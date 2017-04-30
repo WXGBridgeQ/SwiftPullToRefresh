@@ -1,8 +1,8 @@
 //
-//  RefreshGIFView.swift
-//  PullToRefresh
+//  GIFItem.swift
+//  SwiftPullToRefresh
 //
-//  Created by Leo Zhou on 2017/4/30.
+//  Created by Leo Zhou on 2017/5/1.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
 //
 
@@ -10,17 +10,19 @@ import UIKit
 import ImageIO
 import MobileCoreServices
 
-class RefreshGIFView: RefreshView {
-    var data: Data
+final class GIFItem {
+    private let data: Data
     
-    var isBig: Bool
+    private let isBig: Bool
+    
+    private let height: CGFloat
     
     let imageView = GIFAnimatedImageView()
     
-    init(data: Data, isBig: Bool, height: CGFloat, action: @escaping () -> Void) {
+    init(data: Data, isBig: Bool, height: CGFloat) {
         self.data = data
         self.isBig = isBig
-        super.init(height: height, action: action)
+        self.height = height
         
         guard let animatedImage = GIFAnimatedImage(data: data) else {
             print("Error: data is not an animated image")
@@ -28,6 +30,7 @@ class RefreshGIFView: RefreshView {
         }
         
         imageView.animatedImage = animatedImage
+        
         if isBig {
             imageView.bounds.size = CGSize(width: UIScreen.main.bounds.width, height: height)
             imageView.contentMode = .scaleAspectFill
@@ -36,18 +39,17 @@ class RefreshGIFView: RefreshView {
             imageView.bounds.size = CGSize(width: ratio * height * 0.67, height: height * 0.67)
             imageView.contentMode = .scaleAspectFit
         }
-        addSubview(imageView)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func updateRefreshState(_ isRefreshing: Bool) {
+    func updateRefreshState(_ isRefreshing: Bool) {
         isRefreshing ? imageView.startAnimating() : imageView.stopAnimating()
     }
     
-    override func updateProgress(_ progress: CGFloat) {
+    func updateProgress(_ progress: CGFloat) {
         guard let count = imageView.animatedImage?.frameCount else { return }
         
         if progress == 1 {
@@ -56,11 +58,6 @@ class RefreshGIFView: RefreshView {
             imageView.stopAnimating()
             imageView.index = Int(CGFloat(count - 1) * progress)
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        imageView.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
 }
 

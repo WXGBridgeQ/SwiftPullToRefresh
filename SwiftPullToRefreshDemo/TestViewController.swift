@@ -19,54 +19,47 @@ class TestViewController: UIViewController {
         
         switch style {
         case .arrow:
-            scrollView.spr_addArrowRefresh { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            scrollView.spr_addArrowHeader { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
         case .text:
-            scrollView.spr_addTextRefresh { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            scrollView.spr_addTextHeader { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
         case .gifSmall:
             guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
             
-            scrollView.spr_addGIFRefresh(data: data, isBig: false, height: 60) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            scrollView.spr_addGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
         case .gifText:
             guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
             
-            scrollView.spr_addGIFTextRefresh(data: data) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            scrollView.spr_addGIFTextHeader(data: data) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
         case .gifBig:
             guard let url = Bundle.main.url(forResource: "demo-big", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
             
-            scrollView.spr_addGIFRefresh(data: data, isBig: true, height: 120) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
         case .superCat:
             scrollView.spr_addSuperCatRefresh { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
-        case .custom:
-            let custom = RefershCustomView(height: 60) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    self?.scrollView.spr_endRefreshing()
-                }
-            }
-            scrollView.spr_addCustomRefresh(refreshView: custom)
         }
     }
     
@@ -79,16 +72,6 @@ class TestViewController: UIViewController {
 
 extension TestViewController {
     enum Style: Int {
-        case arrow, text, gifSmall, gifText, gifBig, superCat, custom
-    }
-}
-
-final class RefershCustomView: RefreshView {
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        print(isRefreshing)
-    }
-    
-    override func updateProgress(_ progress: CGFloat) {
-        print(progress)
+        case arrow, text, gifSmall, gifText, gifBig, superCat
     }
 }

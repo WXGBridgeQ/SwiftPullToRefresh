@@ -8,68 +8,65 @@
 
 import UIKit
 
-private var refreshViewKey: UInt8 = 0
+private var refreshHeaderViewKey: UInt8 = 0
 
 public extension UIScrollView {
-    private var spr_refreshView: RefreshView? {
+    private var spr_refreshHeaderView: RefreshHeaderView? {
         get {
-            return objc_getAssociatedObject(self, &refreshViewKey) as? RefreshView
+            return objc_getAssociatedObject(self, &refreshHeaderViewKey) as? RefreshHeaderView
         }
         set {
-            objc_setAssociatedObject(self, &refreshViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &refreshHeaderViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             newValue.map { insertSubview($0, at: 0) }
         }
     }
     
-    public func spr_addArrowRefresh(color: UIColor = Default.color,
-                                    height: CGFloat = Default.short,
-                                    action: @escaping () -> Void) {
-        spr_refreshView = RefreshArrowView(color: color, height: height, action: action)
-    }
-    
-    public func spr_addTextRefresh(loadingText: String = Default.loadingText,
-                                   pullingText: String = Default.pullingText,
-                                   releaseText: String = Default.releaseText,
-                                   font: UIFont = Default.font,
-                                   color: UIColor = Default.color,
+    public func spr_addArrowHeader(color: UIColor = Default.color,
                                    height: CGFloat = Default.short,
                                    action: @escaping () -> Void) {
-        spr_refreshView = RefreshTextView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        spr_refreshHeaderView = ArrowHeaderView(color: color, height: height, action: action)
     }
     
-    public func spr_addGIFRefresh(data: Data,
-                                  isBig: Bool,
-                                  height: CGFloat,
+    public func spr_addTextHeader(loadingText: String = Default.loadingText,
+                                  pullingText: String = Default.pullingText,
+                                  releaseText: String = Default.releaseText,
+                                  font: UIFont = Default.font,
+                                  color: UIColor = Default.color,
+                                  height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshView = RefreshGIFView(data: data, isBig: isBig, height: height, action: action)
+        spr_refreshHeaderView = TextHeaderView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
-    public func spr_addGIFTextRefresh(data: Data,
-                                      loadingText: String = Default.loadingText,
-                                      pullingText: String = Default.pullingText,
-                                      releaseText: String = Default.releaseText,
-                                      font: UIFont = Default.font,
-                                      color: UIColor = Default.color,
-                                      height: CGFloat = Default.short,
-                                      action: @escaping () -> Void) {
-        spr_refreshView = RefreshGIFTextView(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+    public func spr_addGIFHeader(data: Data, isBig: Bool, height: CGFloat, action: @escaping () -> Void) {
+        spr_refreshHeaderView = GIFHeaderView(data: data, isBig: isBig, height: height, action: action)
+    }
+    
+    public func spr_addGIFTextHeader(data: Data,
+                                     loadingText: String = Default.loadingText,
+                                     pullingText: String = Default.pullingText,
+                                     releaseText: String = Default.releaseText,
+                                     font: UIFont = Default.font,
+                                     color: UIColor = Default.color,
+                                     height: CGFloat = Default.short,
+                                     action: @escaping () -> Void) {
+        spr_refreshHeaderView = GIFTextHeaderView(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
     public func spr_addSuperCatRefresh(height: CGFloat = Default.high,
                                         action: @escaping () -> Void) {
-        spr_refreshView = RefreshSuperCatView(height: height, action: action)
+        spr_refreshHeaderView = RefreshSuperCatView(height: height, action: action)
     }
     
-    public func spr_addCustomRefresh(refreshView: RefreshView) {
-        spr_refreshView = refreshView
+    public func spr_addCustomRefresh(refreshView: RefreshHeaderView) {
+        spr_refreshHeaderView = refreshView
     }
     
     public func spr_beginRefreshing() {
-        spr_refreshView?.beginRefreshing()
+        spr_refreshHeaderView?.beginRefreshing()
     }
     
     public func spr_endRefreshing() {
-        spr_refreshView?.endRefreshing()
+        spr_refreshHeaderView?.endRefreshing()
     }
 }
 

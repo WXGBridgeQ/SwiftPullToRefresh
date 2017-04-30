@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RefreshSuperCatView: RefreshView {
+final class RefreshSuperCatView: RefreshHeaderView {
     private var refreshItems: [RefreshItem] = []
     private var signRefreshItem: RefreshItem!
     private var isSignVisible = false
