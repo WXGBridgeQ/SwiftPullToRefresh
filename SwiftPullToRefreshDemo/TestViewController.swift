@@ -44,6 +44,13 @@ class TestViewController: UIViewController {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
+        case .custom:
+            let custom = RefershCustomView(height: 60) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.scrollView.spr_endRefreshing()
+                }
+            }
+            scrollView.spr_addCustomRefresh(refreshView: custom)
         }
     }
     
@@ -56,6 +63,16 @@ class TestViewController: UIViewController {
 
 extension TestViewController {
     enum Style: Int {
-        case arrow, text, gif, superCat
+        case arrow, text, gif, superCat, custom
+    }
+}
+
+final class RefershCustomView: RefreshView {
+    override func updateRefreshState(_ isRefreshing: Bool) {
+        print(isRefreshing)
+    }
+    
+    override func updateProgress(_ progress: CGFloat) {
+        print(progress)
     }
 }

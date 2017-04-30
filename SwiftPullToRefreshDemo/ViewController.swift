@@ -8,7 +8,7 @@
 
 import UIKit
 
-let refreshViews = ["RefreshArrowView", "RefreshTextView", "RefreshGIFView", "RefreshSuperCatView"]
+let refreshViews = ["RefreshArrowView", "RefreshTextView", "RefreshGIFView", "RefreshSuperCatView", "RefreshCustomView"]
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return refreshViews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

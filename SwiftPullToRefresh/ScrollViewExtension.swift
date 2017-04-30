@@ -48,6 +48,10 @@ public extension UIScrollView {
         spr_refreshView = RefreshSuperCatView(height: height, action: action)
     }
     
+    public func spr_addCustomRefresh(refreshView: RefreshView) {
+        spr_refreshView = refreshView
+    }
+    
     public func spr_beginRefreshing() {
         spr_refreshView?.beginRefreshing()
     }
