@@ -38,9 +38,10 @@ public extension UIScrollView {
     }
     
     public func spr_addGIFRefresh(data: Data,
+                                  isBig: Bool = Default.isGIFBig,
                                   height: CGFloat = Default.gifViewHeight,
                                   action: @escaping () -> Void) {
-        spr_refreshView = RefreshGIFView(data: data, height: height, action: action)
+        spr_refreshView = RefreshGIFView(data: data, isBig: isBig, height: height, action: action)
     }
     
     public func spr_addSuperCatRefresh(height: CGFloat = Default.superCatViewHeight,
@@ -63,19 +64,18 @@ public extension UIScrollView {
 
 // MARK: default values
 
-private let isChinese = Bundle.main.preferredLocalizations[0].contains("zh-Han")
-
 struct Default {
     static let arrowColor: UIColor = UIColor.black.withAlphaComponent(0.8)
     static let arrowViewHeight: CGFloat = 60
     
-    static let loadingText = isChinese ? "正在加载" : "Loading..."
-    static let pullingText = isChinese ? "下拉刷新" : "Pull down to refresh"
-    static let releaseText = isChinese ? "松开刷新" : "Release to refresh"
+    static let loadingText = "Loading..."
+    static let pullingText = "Pull down to refresh"
+    static let releaseText = "Release to refresh"
     static let textFont: UIFont = UIFont.systemFont(ofSize: 14)
     static let textColor: UIColor = UIColor.black.withAlphaComponent(0.8)
     static let textViewHeight: CGFloat = 60
     
+    static let isGIFBig: Bool = true
     static let gifViewHeight: CGFloat = 120
     
     static let superCatViewHeight: CGFloat = 120

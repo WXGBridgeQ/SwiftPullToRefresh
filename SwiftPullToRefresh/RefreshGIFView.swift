@@ -8,19 +8,28 @@
 
 import UIKit
 import ImageIO
+import MobileCoreServices
 
 final class RefreshGIFView: RefreshView {
     var data: Data
     
+    var isBig: Bool
+    
     private let imageView = GIFAnimatedImageView()
     
-    init(data: Data, height: CGFloat, action: @escaping () -> Void) {
+    init(data: Data, isBig: Bool, height: CGFloat, action: @escaping () -> Void) {
         self.data = data
+        self.isBig = isBig
         super.init(height: height, action: action)
         
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
-        imageView.animatedImage = GIFAnimatedImage(data: data)
-        imageView.contentMode = .scaleAspectFill
+        guard let animatedImage = GIFAnimatedImage(data: data) else {
+            print("Error: data is not an animated image")
+            return
+        }
+        
+        imageView.animatedImage = animatedImage
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: isBig ? height : height * 0.67)
+        imageView.contentMode = isBig ? .scaleAspectFill : .scaleAspectFit
         addSubview(imageView)
     }
     
@@ -35,6 +44,11 @@ final class RefreshGIFView: RefreshView {
     override func updateProgress(_ progress: CGFloat) {
         guard let count = imageView.animatedImage?.frameCount else { return }
         imageView.index = Int(CGFloat(count - 1) * progress)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
 }
 
@@ -63,9 +77,11 @@ class GIFAnimatedImage: AnimatedImage {
     }
     
     init?(data: Data) {
-        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return nil }
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil), let type = CGImageSourceGetType(source) else { return nil }
         
+        let isTypeGIF = UTTypeConformsTo(type, kUTTypeGIF)
         let count = CGImageSourceGetCount(source)
+        if !isTypeGIF || count <= 1 { return nil }
         
         for index in 0 ..< count {
             guard let image = CGImageSourceCreateImageAtIndex(source, index, nil), let info = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? [String : Any], let gifInfo = info[kCGImagePropertyGIFDictionary as String] as? [String: Any] else { continue }

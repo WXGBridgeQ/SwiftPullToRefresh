@@ -23,7 +23,8 @@
 		B387419B1EB584F900EB5503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B387419A1EB584F900EB5503 /* Assets.xcassets */; };
 		B387419E1EB584F900EB5503 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B387419C1EB584F900EB5503 /* LaunchScreen.storyboard */; };
 		B38741A41EB5856800EB5503 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38741A31EB5856800EB5503 /* TestViewController.swift */; };
-		B38741A61EB587C000EB5503 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = B38741A51EB587C000EB5503 /* demo.gif */; };
+		B38741A61EB587C000EB5503 /* demo-big.gif in Resources */ = {isa = PBXBuildFile; fileRef = B38741A51EB587C000EB5503 /* demo-big.gif */; };
+		B3D75F8F1EB5E473001388E6 /* demo-small.gif in Resources */ = {isa = PBXBuildFile; fileRef = B3D75F8E1EB5E473001388E6 /* demo-small.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +70,8 @@
 		B387419D1EB584F900EB5503 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B387419F1EB584F900EB5503 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B38741A31EB5856800EB5503 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		B38741A51EB587C000EB5503 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
+		B38741A51EB587C000EB5503 /* demo-big.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "demo-big.gif"; sourceTree = "<group>"; };
+		B3D75F8E1EB5E473001388E6 /* demo-small.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "demo-small.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +133,8 @@
 				B38741931EB584F900EB5503 /* AppDelegate.swift */,
 				B38741951EB584F900EB5503 /* ViewController.swift */,
 				B38741A31EB5856800EB5503 /* TestViewController.swift */,
-				B38741A51EB587C000EB5503 /* demo.gif */,
+				B38741A51EB587C000EB5503 /* demo-big.gif */,
+				B3D75F8E1EB5E473001388E6 /* demo-small.gif */,
 				B38741971EB584F900EB5503 /* Main.storyboard */,
 				B387419A1EB584F900EB5503 /* Assets.xcassets */,
 				B387419C1EB584F900EB5503 /* LaunchScreen.storyboard */,
@@ -247,7 +250,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B387419E1EB584F900EB5503 /* LaunchScreen.storyboard in Resources */,
-				B38741A61EB587C000EB5503 /* demo.gif in Resources */,
+				B3D75F8F1EB5E473001388E6 /* demo-small.gif in Resources */,
+				B38741A61EB587C000EB5503 /* demo-big.gif in Resources */,
 				B387419B1EB584F900EB5503 /* Assets.xcassets in Resources */,
 				B38741991EB584F900EB5503 /* Main.storyboard in Resources */,
 			);

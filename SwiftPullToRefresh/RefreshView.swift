@@ -43,11 +43,11 @@ open class RefreshView: UIView {
     }
     
     open func updateRefreshState(_ isRefreshing: Bool) {
-        fatalError("PullToRefresh: subclasses need to implement the updateRefreshState(_:) method")
+        fatalError("SwiftPullToRefresh: subclasses need to implement the updateRefreshState(_:) method")
     }
     
     open func updateProgress(_ progress: CGFloat) {
-        fatalError("PullToRefresh: subclasses need to implement the updateProgress(_:) method")
+        fatalError("SwiftPullToRefresh: subclasses need to implement the updateProgress(_:) method")
     }
     
     override open func willMove(toSuperview newSuperview: UIView?) {
