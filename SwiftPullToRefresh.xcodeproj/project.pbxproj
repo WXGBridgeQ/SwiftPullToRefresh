@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B37166471EB5D4FE00A0AC56 /* SwiftPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B38741741EB584E400EB5503 /* SwiftPullToRefresh.framework */; };
+		B37166481EB5D4FE00A0AC56 /* SwiftPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B38741741EB584E400EB5503 /* SwiftPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B38741791EB584E400EB5503 /* SwiftPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = B38741771EB584E400EB5503 /* SwiftPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B38741861EB584ED00EB5503 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B387417F1EB584ED00EB5503 /* Assets.xcassets */; };
 		B38741871EB584ED00EB5503 /* RefreshArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38741801EB584ED00EB5503 /* RefreshArrowView.swift */; };
@@ -23,6 +25,30 @@
 		B38741A41EB5856800EB5503 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38741A31EB5856800EB5503 /* TestViewController.swift */; };
 		B38741A61EB587C000EB5503 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = B38741A51EB587C000EB5503 /* demo.gif */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B37166491EB5D4FE00A0AC56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B387416B1EB584E400EB5503 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B38741731EB584E400EB5503;
+			remoteInfo = SwiftPullToRefresh;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B371664B1EB5D4FE00A0AC56 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B37166481EB5D4FE00A0AC56 /* SwiftPullToRefresh.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B38741741EB584E400EB5503 /* SwiftPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B37166471EB5D4FE00A0AC56 /* SwiftPullToRefresh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,10 +179,12 @@
 				B387418D1EB584F900EB5503 /* Sources */,
 				B387418E1EB584F900EB5503 /* Frameworks */,
 				B387418F1EB584F900EB5503 /* Resources */,
+				B371664B1EB5D4FE00A0AC56 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B371664A1EB5D4FE00A0AC56 /* PBXTargetDependency */,
 			);
 			name = SwiftPullToRefreshDemo;
 			productName = SwiftPullToRefreshDemo;
@@ -174,11 +203,13 @@
 				TargetAttributes = {
 					B38741731EB584E400EB5503 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 52UA52QQR3;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					B38741901EB584F900EB5503 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 52UA52QQR3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -249,6 +280,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B371664A1EB5D4FE00A0AC56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B38741731EB584E400EB5503 /* SwiftPullToRefresh */;
+			targetProxy = B37166491EB5D4FE00A0AC56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B38741971EB584F900EB5503 /* Main.storyboard */ = {
@@ -377,6 +416,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 52UA52QQR3;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -397,6 +437,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 52UA52QQR3;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -413,7 +454,9 @@
 		B38741A11EB584F900EB5503 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 52UA52QQR3;
 				INFOPLIST_FILE = SwiftPullToRefreshDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiredcraft.SwiftPullToRefreshDemo;
@@ -425,7 +468,9 @@
 		B38741A21EB584F900EB5503 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 52UA52QQR3;
 				INFOPLIST_FILE = SwiftPullToRefreshDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiredcraft.SwiftPullToRefreshDemo;
@@ -453,6 +498,7 @@
 				B387417E1EB584E400EB5503 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B38741A01EB584F900EB5503 /* Build configuration list for PBXNativeTarget "SwiftPullToRefreshDemo" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +507,7 @@
 				B38741A21EB584F900EB5503 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
