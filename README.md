@@ -66,7 +66,7 @@ scrollView.spr_addGIFTextRefresh(data: data) { [weak self] in
 #### Super cat refresh (Inspired by [RayWenderlich](https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18))
 
 ```swift
-scrollView.spr_addSuperCatRefresh(data: data) { [weak self] in
+scrollView.spr_addSuperCatRefresh { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
