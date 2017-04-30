@@ -30,16 +30,38 @@ scrollView.spr_addTextRefresh { [weak self] in
 
 ![](SwiftPullToRefreshDemo/demo02_text.gif)
 
-#### GIF refresh
+#### Big GIF refresh
 
 ```swift
-scrollView.spr_addGIFRefresh(data: data) { [weak self] in
+scrollView.spr_addGIFRefresh(data: data, isBig: true, height: 120) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo03_gif.gif)
+![](SwiftPullToRefreshDemo/demo03_gif_big.gif)
+
+#### Small GIF refresh
+
+```swift
+scrollView.spr_addGIFRefresh(data: data, isBig: false, height: 60) { [weak self] in
+    // do your action here
+    // self?.scrollView.spr_endRefreshing()
+}
+```
+
+![](SwiftPullToRefreshDemo/demo05_gif_small.gif)
+
+#### GIF + Text refresh
+
+```swift
+scrollView.spr_addGIFTextRefresh(data: data) { [weak self] in
+    // do your action here
+    // self?.scrollView.spr_endRefreshing()
+}
+```
+
+![](SwiftPullToRefreshDemo/demo06_gif_text.gif)
 
 #### Super cat refresh (Inspired by [RayWenderlich](https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18))
 
@@ -51,6 +73,10 @@ scrollView.spr_addSuperCatRefresh(data: data) { [weak self] in
 ```
 
 ![](SwiftPullToRefreshDemo/demo04_supercat.gif)
+
+## Demo
+
+Open and run the SwiftPullToRefreshDemo target in Xcode to see SwiftPullToRefresh in action.
 
 ## Requirements
 
