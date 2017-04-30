@@ -10,12 +10,12 @@ import UIKit
 import ImageIO
 import MobileCoreServices
 
-final class RefreshGIFView: RefreshView {
+class RefreshGIFView: RefreshView {
     var data: Data
     
     var isBig: Bool
     
-    private let imageView = GIFAnimatedImageView()
+    let imageView = GIFAnimatedImageView()
     
     init(data: Data, isBig: Bool, height: CGFloat, action: @escaping () -> Void) {
         self.data = data
@@ -28,8 +28,14 @@ final class RefreshGIFView: RefreshView {
         }
         
         imageView.animatedImage = animatedImage
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: isBig ? height : height * 0.67)
-        imageView.contentMode = isBig ? .scaleAspectFill : .scaleAspectFit
+        if isBig {
+            imageView.bounds.size = CGSize(width: UIScreen.main.bounds.width, height: height)
+            imageView.contentMode = .scaleAspectFill
+        } else {
+            let ratio = animatedImage.size.width / animatedImage.size.height
+            imageView.bounds.size = CGSize(width: ratio * height * 0.67, height: height * 0.67)
+            imageView.contentMode = .scaleAspectFit
+        }
         addSubview(imageView)
     }
     
@@ -43,7 +49,13 @@ final class RefreshGIFView: RefreshView {
     
     override func updateProgress(_ progress: CGFloat) {
         guard let count = imageView.animatedImage?.frameCount else { return }
-        imageView.index = Int(CGFloat(count - 1) * progress)
+        
+        if progress == 1 {
+            imageView.startAnimating()
+        } else {
+            imageView.stopAnimating()
+            imageView.index = Int(CGFloat(count - 1) * progress)
+        }
     }
     
     override func layoutSubviews() {

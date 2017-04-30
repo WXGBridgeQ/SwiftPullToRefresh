@@ -38,10 +38,18 @@ class TestViewController: UIViewController {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
+        case .gifText:
+            guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
+            
+            scrollView.spr_addGIFTextRefresh(data: data) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.scrollView.spr_endRefreshing()
+                }
+            }
         case .gifBig:
             guard let url = Bundle.main.url(forResource: "demo-big", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
             
-            scrollView.spr_addGIFRefresh(data: data) { [weak self] in
+            scrollView.spr_addGIFRefresh(data: data, isBig: true, height: 120) { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self?.scrollView.spr_endRefreshing()
                 }
@@ -71,7 +79,7 @@ class TestViewController: UIViewController {
 
 extension TestViewController {
     enum Style: Int {
-        case arrow, text, gifSmall, gifBig, superCat, custom
+        case arrow, text, gifSmall, gifText, gifBig, superCat, custom
     }
 }
 

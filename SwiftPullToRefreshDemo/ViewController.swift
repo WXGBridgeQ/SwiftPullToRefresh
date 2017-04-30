@@ -8,7 +8,7 @@
 
 import UIKit
 
-let refreshViews = ["RefreshArrowView", "RefreshTextView", "RefreshGIFSmallView", "RefreshGIFBigView", "RefreshSuperCatView", "RefreshCustomView"]
+let refreshViews = ["RefreshArrowView", "RefreshTextView", "RefreshGIFSmallView", "RefreshGIFTextView", "RefreshGIFBigView", "RefreshSuperCatView", "RefreshCustomView"]
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!

@@ -21,8 +21,8 @@ public extension UIScrollView {
         }
     }
     
-    public func spr_addArrowRefresh(color: UIColor = Default.arrowColor,
-                                    height: CGFloat = Default.arrowViewHeight,
+    public func spr_addArrowRefresh(color: UIColor = Default.color,
+                                    height: CGFloat = Default.short,
                                     action: @escaping () -> Void) {
         spr_refreshView = RefreshArrowView(color: color, height: height, action: action)
     }
@@ -30,21 +30,32 @@ public extension UIScrollView {
     public func spr_addTextRefresh(loadingText: String = Default.loadingText,
                                    pullingText: String = Default.pullingText,
                                    releaseText: String = Default.releaseText,
-                                   font: UIFont = Default.textFont,
-                                   color: UIColor = Default.textColor,
-                                   height: CGFloat = Default.textViewHeight,
+                                   font: UIFont = Default.font,
+                                   color: UIColor = Default.color,
+                                   height: CGFloat = Default.short,
                                    action: @escaping () -> Void) {
         spr_refreshView = RefreshTextView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
     public func spr_addGIFRefresh(data: Data,
-                                  isBig: Bool = Default.isGIFBig,
-                                  height: CGFloat = Default.gifViewHeight,
+                                  isBig: Bool,
+                                  height: CGFloat,
                                   action: @escaping () -> Void) {
         spr_refreshView = RefreshGIFView(data: data, isBig: isBig, height: height, action: action)
     }
     
-    public func spr_addSuperCatRefresh(height: CGFloat = Default.superCatViewHeight,
+    public func spr_addGIFTextRefresh(data: Data,
+                                      loadingText: String = Default.loadingText,
+                                      pullingText: String = Default.pullingText,
+                                      releaseText: String = Default.releaseText,
+                                      font: UIFont = Default.font,
+                                      color: UIColor = Default.color,
+                                      height: CGFloat = Default.short,
+                                      action: @escaping () -> Void) {
+        spr_refreshView = RefreshGIFTextView(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+    }
+    
+    public func spr_addSuperCatRefresh(height: CGFloat = Default.high,
                                         action: @escaping () -> Void) {
         spr_refreshView = RefreshSuperCatView(height: height, action: action)
     }
@@ -65,18 +76,12 @@ public extension UIScrollView {
 // MARK: default values
 
 struct Default {
-    static let arrowColor: UIColor = UIColor.black.withAlphaComponent(0.8)
-    static let arrowViewHeight: CGFloat = 60
-    
+    static let color: UIColor = UIColor.black.withAlphaComponent(0.8)
+    static let font: UIFont = UIFont.systemFont(ofSize: 14)
     static let loadingText = "Loading..."
     static let pullingText = "Pull down to refresh"
     static let releaseText = "Release to refresh"
-    static let textFont: UIFont = UIFont.systemFont(ofSize: 14)
-    static let textColor: UIColor = UIColor.black.withAlphaComponent(0.8)
-    static let textViewHeight: CGFloat = 60
     
-    static let isGIFBig: Bool = true
-    static let gifViewHeight: CGFloat = 120
-    
-    static let superCatViewHeight: CGFloat = 120
+    static let high: CGFloat = 120
+    static let short: CGFloat = 60
 }
