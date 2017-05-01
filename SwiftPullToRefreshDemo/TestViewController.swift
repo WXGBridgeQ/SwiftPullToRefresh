@@ -78,21 +78,11 @@ class TestViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.spr_beginRefreshing()
-        
-        #selector(UIScrollView.spr_addCustomFooter(footerView:))
-        scrollView.spr_addCustomHeader(headerView: RefreshHeaderView)
-        scrollView.spr_addCustomFooter(footerView: RefreshFooterView)
     }
 }
 
 extension TestViewController {
     enum Style: Int {
         case indicatorHeader, textHeader, smallGIFHeader, gifTextHeader, bigGIFHeader, superCatHeader, indicatorFooter, textFooter
-    }
-}
-
-final class CustomFooter: RefreshFooterView {
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        // customize your view display with refresh state here
     }
 }
