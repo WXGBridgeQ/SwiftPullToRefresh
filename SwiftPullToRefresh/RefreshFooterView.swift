@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RefreshFooterView: RefreshBaseView {
+open class RefreshFooterView: RefreshBaseView {
     let height: CGFloat
     
     let action: () -> Void
@@ -33,7 +33,7 @@ class RefreshFooterView: RefreshBaseView {
         fatalError("SwiftPullToRefresh: subclasses need to implement the updateRefreshState(_:) method")
     }
     
-    override func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))

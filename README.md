@@ -1,78 +1,100 @@
 # SwiftPullToRefresh
 
-An easy way to implement pull-to-refresh feature based on UIScrollView extension, written in Swift 3.
+An easy way to implement pull-down-to-refresh and pull-up-to-load-more feature based on UIScrollView extension, written in Swift 3.
 
-Supply default style refresh controls which you can directly use in your project, and also support for customization. GIF is also supported.
+Supply default style header and footer controls which you can directly use in your project, and also support for customization. GIF is also supported.
 
 ## Example usage
 
-#### Arrow refresh
+#### Indicator Header
 
 ```swift
-scrollView.spr_addArrowRefresh { [weak self] in
+scrollView.spr_addIndicatorHeader { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo01_arrow.gif)
+![](SwiftPullToRefreshDemo/demo01.gif)
 
-#### Text refresh
+#### Text Header
 
 Text, font, color can be customized.
 
 ```swift
-scrollView.spr_addTextRefresh { [weak self] in
+scrollView.spr_addTextHeader { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo02_text.gif)
+![](SwiftPullToRefreshDemo/demo02.gif)
 
-#### Big GIF refresh
+#### Small GIF Header
 
 ```swift
-scrollView.spr_addGIFRefresh(data: data, isBig: true, height: 120) { [weak self] in
+scrollView.spr_addGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo03_gif_big.gif)
+![](SwiftPullToRefreshDemo/demo03.gif)
 
-#### Small GIF refresh
+#### GIF + Text Header
 
 ```swift
-scrollView.spr_addGIFRefresh(data: data, isBig: false, height: 60) { [weak self] in
+scrollView.spr_addGIFTextHeader(data: data) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo05_gif_small.gif)
+![](SwiftPullToRefreshDemo/demo04.gif)
 
-#### GIF + Text refresh
+#### Big GIF Header
 
 ```swift
-scrollView.spr_addGIFTextRefresh(data: data) { [weak self] in
+scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo06_gif_text.gif)
+![](SwiftPullToRefreshDemo/demo05.gif)
 
-#### Super cat refresh (Inspired by [RayWenderlich](https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18))
+#### SuperCat Header (Inspired by [RayWenderlich](https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18))
 
 ```swift
-scrollView.spr_addSuperCatRefresh { [weak self] in
+scrollView.spr_addSuperCatHeader { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
 ```
 
-![](SwiftPullToRefreshDemo/demo04_supercat.gif)
+![](SwiftPullToRefreshDemo/demo06.gif)
+
+#### Indicator Footer
+
+```swift
+scrollView.spr_addIndicatorFooter { [weak self] in
+    // do your action here
+    // self?.scrollView.spr_endRefreshing()
+}
+```
+
+![](SwiftPullToRefreshDemo/demo07.gif)
+
+#### Text Footer
+
+```swift
+scrollView.spr_addTextFooter { [weak self] in { [weak self] in
+    // do your action here
+    // self?.scrollView.spr_endRefreshing()
+}
+```
+
+![](SwiftPullToRefreshDemo/demo08.gif)
 
 ## Demo
 
@@ -104,16 +126,32 @@ Add SwiftPullToRefresh folder into your project.
 
 ## Customization
 
-The framework is very easy to customize the use, you just need to subclass the `RefreshView` and implement two methods below:
+The framework is very easy to customize the use.
+
+#### Custom Header
+
+You just need to subclass the `RefreshHeaderView` and implement the methods below, then call `spr_addCustomHeader(headerView:)`:
 
 ```swift
-class SomeCustomView: RefreshView {
+class CustomHeader: RefreshHeaderView {
     override func updateRefreshState(_ isRefreshing: Bool) {
         // customize your view display with refresh state here
     }
     
     override func updateProgress(_ progress: CGFloat) {
         // customize your view display with progress here
+    }
+}
+```
+
+#### Custom Footer
+
+You just need to subclass the `RefreshFooterView` and implement the method below, then call `spr_addCustomFooter(footerView:)`:
+
+```swift
+class CustomFooter: RefreshFooterView {
+    override func updateRefreshState(_ isRefreshing: Bool) {
+        // customize your view display with refresh state here
     }
 }
 ```

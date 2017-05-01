@@ -71,8 +71,26 @@ public extension UIScrollView {
         spr_refreshHeaderView = SuperCatHeaderView(height: height, action: action)
     }
     
-    public func spr_addCustomRefresh(refreshView: RefreshHeaderView) {
-        spr_refreshHeaderView = refreshView
+    public func spr_addIndicatorFooter(color: UIColor = Default.color,
+                                       height: CGFloat = Default.footer,
+                                       action: @escaping () -> Void) {
+        spr_refreshFooterView = IndicatorFooterView(color: color, height: height, action: action)
+    }
+    
+    public func spr_addTextFooter(loadingText: String = Default.loadingText,
+                                  font: UIFont = Default.font,
+                                  color: UIColor = Default.color,
+                                  height: CGFloat = Default.short,
+                                  action: @escaping () -> Void) {
+        spr_refreshFooterView = TextFooterView(loadingText: loadingText, font: font, color: color, height: height, action: action)
+    }
+    
+    public func spr_addCustomHeader(headerView: RefreshHeaderView) {
+        spr_refreshHeaderView = headerView
+    }
+    
+    public func spr_addCustomFooter(footerView: RefreshFooterView) {
+        spr_refreshFooterView = footerView
     }
     
     public func spr_beginRefreshing() {
@@ -82,20 +100,6 @@ public extension UIScrollView {
     public func spr_endRefreshing() {
         spr_refreshHeaderView?.endRefreshing()
         spr_refreshFooterView?.endRefreshing()
-    }
-    
-    public func spr_addIndicatorFooter(color: UIColor = Default.color,
-                                       height: CGFloat = Default.footer,
-                                       action: @escaping () -> Void) {
-        spr_refreshFooterView = IndicatorFooterView(color: color, height: height, action: action)
-    }
-    
-    public func spr_addTextFooter(loadingText: String = Default.loadingText,
-                                 font: UIFont = Default.font,
-                                 color: UIColor = Default.color,
-                                 height: CGFloat = Default.short,
-                                 action: @escaping () -> Void) {
-        spr_refreshFooterView = TextFooterView(loadingText: loadingText, font: font, color: color, height: height, action: action)
     }
 }
 
