@@ -1,5 +1,5 @@
 //
-//  ArrowHeaderView.swift
+//  IndicatorHeaderView.swift
 //  PullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-final class ArrowHeaderView: RefreshHeaderView {
-    private let arrowItem: ArrowItem
+final class IndicatorHeaderView: RefreshHeaderView {
+    private let indicatorItem: IndicatorItem
     
     init(color: UIColor, height: CGFloat, action: @escaping () -> Void) {
-        self.arrowItem = ArrowItem(color: color)
+        self.indicatorItem = IndicatorItem(color: color)
         super.init(height: height, action: action)
         
-        layer.addSublayer(arrowItem.arrowLayer)
-        addSubview(arrowItem.indicator)
+        layer.addSublayer(indicatorItem.arrowLayer)
+        addSubview(indicatorItem.indicator)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,17 +24,17 @@ final class ArrowHeaderView: RefreshHeaderView {
     }
     
     override func updateRefreshState(_ isRefreshing: Bool) {
-        arrowItem.updateRefreshState(isRefreshing)
+        indicatorItem.updateRefreshState(isRefreshing)
     }
     
     override func updateProgress(_ progress: CGFloat) {
-        arrowItem.updateProgress(progress)
+        indicatorItem.updateProgress(progress)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        arrowItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
-        arrowItem.indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        indicatorItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
+        indicatorItem.indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
 }

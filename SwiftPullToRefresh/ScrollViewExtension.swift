@@ -9,6 +9,7 @@
 import UIKit
 
 private var refreshHeaderViewKey: UInt8 = 0
+private var refreshFooterViewKey: UInt8 = 0
 
 public extension UIScrollView {
     private var spr_refreshHeaderView: RefreshHeaderView? {
@@ -21,10 +22,20 @@ public extension UIScrollView {
         }
     }
     
-    public func spr_addArrowHeader(color: UIColor = Default.color,
-                                   height: CGFloat = Default.short,
-                                   action: @escaping () -> Void) {
-        spr_refreshHeaderView = ArrowHeaderView(color: color, height: height, action: action)
+    private var spr_refreshFooterView: RefreshFooterView? {
+        get {
+            return objc_getAssociatedObject(self, &refreshFooterViewKey) as? RefreshFooterView
+        }
+        set {
+            objc_setAssociatedObject(self, &refreshFooterViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            newValue.map { insertSubview($0, at: 0) }
+        }
+    }
+    
+    public func spr_addIndicatorHeader(color: UIColor = Default.color,
+                                       height: CGFloat = Default.short,
+                                       action: @escaping () -> Void) {
+        spr_refreshHeaderView = IndicatorHeaderView(color: color, height: height, action: action)
     }
     
     public func spr_addTextHeader(loadingText: String = Default.loadingText,
@@ -37,7 +48,10 @@ public extension UIScrollView {
         spr_refreshHeaderView = TextHeaderView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
-    public func spr_addGIFHeader(data: Data, isBig: Bool, height: CGFloat, action: @escaping () -> Void) {
+    public func spr_addGIFHeader(data: Data,
+                                 isBig: Bool,
+                                 height: CGFloat,
+                                 action: @escaping () -> Void) {
         spr_refreshHeaderView = GIFHeaderView(data: data, isBig: isBig, height: height, action: action)
     }
     
@@ -52,9 +66,9 @@ public extension UIScrollView {
         spr_refreshHeaderView = GIFTextHeaderView(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
-    public func spr_addSuperCatRefresh(height: CGFloat = Default.high,
-                                        action: @escaping () -> Void) {
-        spr_refreshHeaderView = RefreshSuperCatView(height: height, action: action)
+    public func spr_addSuperCatHeader(height: CGFloat = Default.high,
+                                      action: @escaping () -> Void) {
+        spr_refreshHeaderView = SuperCatHeaderView(height: height, action: action)
     }
     
     public func spr_addCustomRefresh(refreshView: RefreshHeaderView) {
@@ -67,6 +81,21 @@ public extension UIScrollView {
     
     public func spr_endRefreshing() {
         spr_refreshHeaderView?.endRefreshing()
+        spr_refreshFooterView?.endRefreshing()
+    }
+    
+    public func spr_addIndicatorFooter(color: UIColor = Default.color,
+                                       height: CGFloat = Default.footer,
+                                       action: @escaping () -> Void) {
+        spr_refreshFooterView = IndicatorFooterView(color: color, height: height, action: action)
+    }
+    
+    public func spr_addTextFooter(loadingText: String = Default.loadingText,
+                                 font: UIFont = Default.font,
+                                 color: UIColor = Default.color,
+                                 height: CGFloat = Default.short,
+                                 action: @escaping () -> Void) {
+        spr_refreshFooterView = TextFooterView(loadingText: loadingText, font: font, color: color, height: height, action: action)
     }
 }
 
@@ -81,4 +110,5 @@ struct Default {
     
     static let high: CGFloat = 120
     static let short: CGFloat = 60
+    static let footer: CGFloat = 40
 }

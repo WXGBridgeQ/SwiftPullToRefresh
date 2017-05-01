@@ -1,5 +1,5 @@
 //
-//  RefreshSuperCatView.swift
+//  SuperCatHeaderView.swift
 //  PullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RefreshSuperCatView: RefreshHeaderView {
+final class SuperCatHeaderView: RefreshHeaderView {
     private var refreshItems: [RefreshItem] = []
     private var signRefreshItem: RefreshItem!
     private var isSignVisible = false

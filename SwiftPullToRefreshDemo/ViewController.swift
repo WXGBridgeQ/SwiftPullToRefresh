@@ -8,7 +8,7 @@
 
 import UIKit
 
-let refreshViews = ["RefreshArrowView", "RefreshTextView", "RefreshGIFSmallView", "RefreshGIFTextView", "RefreshGIFBigView", "RefreshSuperCatView"]
+let refreshViews = ["IndicatorHeader", "TextHeader", "SmallGIFHeader", "GIFTextHeader", "BigGIFHeader", "SuperCatHeader", "IndicatorFooter", "TextFooter"]
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -33,7 +33,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let test = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-        test.style = TestViewController.Style(rawValue: indexPath.row) ?? .arrow
+        test.style = TestViewController.Style(rawValue: indexPath.row) ?? .indicatorHeader
         navigationController?.pushViewController(test, animated: true)
     }
 }

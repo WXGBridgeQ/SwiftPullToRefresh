@@ -1,5 +1,5 @@
 //
-//  ArrowItem.swift
+//  Indicator.swift
 //  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ArrowItem {
+final class IndicatorItem {
     private let color: UIColor
     
     lazy var arrowLayer: CAShapeLayer = {
