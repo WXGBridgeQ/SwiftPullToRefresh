@@ -13,8 +13,8 @@ env:
 before_install:
   
 script:
-  xcodebuild -project "$PROJECT" -scheme "$FRAMEWORK_SCHEME" -configuration Debug
-  xcodebuild -project "$PROJECT" -scheme "$FRAMEWORK_SCHEME" -configuration Release
-  xcodebuild -project "$PROJECT" -scheme "$EXAMPLE_SCHEME" -configuration Debug
+  - xcodebuild -project "$PROJECT" -scheme "$FRAMEWORK_SCHEME" -configuration Debug
+  - xcodebuild -project "$PROJECT" -scheme "$FRAMEWORK_SCHEME" -configuration Release
+  - xcodebuild -project "$PROJECT" -scheme "$EXAMPLE_SCHEME" -configuration Debug
 after_success:
   - sleep 5
