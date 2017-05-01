@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/WXGBridgeQ/SwiftPullToRefresh.svg)](https://travis-ci.org/WXGBridgeQ/SwiftPullToRefresh)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftPullToRefresh.svg)](https://cocoapods.org/pods/SwiftPullToRefresh)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftPullToRefresh.svg)](https://cocoapods.org/pods/SwiftPullToRefresh)
+[![Language](https://img.shields.io/badge/language-swift-orange.svg)](https://swift.org/)
+
 # SwiftPullToRefresh
 
 An easy way to implement pull-down-to-refresh and pull-up-to-load-more feature based on UIScrollView extension, written in Swift 3.
