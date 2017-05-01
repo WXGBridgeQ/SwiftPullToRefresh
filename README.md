@@ -88,7 +88,7 @@ scrollView.spr_addIndicatorFooter { [weak self] in
 #### Text Footer
 
 ```swift
-scrollView.spr_addTextFooter { [weak self] in { [weak self] in
+scrollView.spr_addTextFooter { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -128,9 +128,7 @@ Add SwiftPullToRefresh folder into your project.
 
 The framework is very easy to customize the use.
 
-#### Custom Header
-
-You just need to subclass the `RefreshHeaderView` and implement the methods below, then call `spr_addCustomHeader(headerView:)`:
+You just need to subclass the `RefreshHeaderView` or `RefreshFooterView ` and implement the methods below, then call `spr_addCustomHeader(headerView:)` or `spr_addCustomHeader(headerView:)` to add it to your scrollView.
 
 ```swift
 class CustomHeader: RefreshHeaderView {
@@ -142,16 +140,14 @@ class CustomHeader: RefreshHeaderView {
         // customize your view display with progress here
     }
 }
-```
 
-#### Custom Footer
-
-You just need to subclass the `RefreshFooterView` and implement the method below, then call `spr_addCustomFooter(footerView:)`:
-
-```swift
 class CustomFooter: RefreshFooterView {
     override func updateRefreshState(_ isRefreshing: Bool) {
         // customize your view display with refresh state here
+    }
+    
+    override func updateProgress(_ progress: CGFloat) {
+        // customize your view display with progress here
     }
 }
 ```
