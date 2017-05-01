@@ -41,7 +41,11 @@ final class IndicatorItem {
         isRefreshing ? indicator.startAnimating() : indicator.stopAnimating()
     }
     
-    func updateProgress(_ progress: CGFloat) {
-        arrowLayer.transform = progress == 1 ? CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1) : CATransform3DIdentity
+    func updateProgress(_ progress: CGFloat, isHeader: Bool = true) {
+        if isHeader {
+            arrowLayer.transform = progress == 1 ? CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1) : CATransform3DIdentity
+        } else {
+            arrowLayer.transform = progress == 1 ? CATransform3DIdentity : CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
+        }
     }
 }

@@ -19,10 +19,17 @@ open class RefreshFooterView: RefreshBaseView {
         }
     }
     
+    fileprivate var progress: CGFloat = 0 {
+        didSet {
+            updateProgress(progress)
+        }
+    }
+    
     public init(height: CGFloat, action: @escaping () -> Void) {
         self.height = height
         self.action = action
         super.init(frame: .zero)
+        updateProgress(progress)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -31,6 +38,10 @@ open class RefreshFooterView: RefreshBaseView {
     
     open func updateRefreshState(_ isRefreshing: Bool) {
         fatalError("SwiftPullToRefresh: subclasses need to implement the updateRefreshState(_:) method")
+    }
+    
+    open func updateProgress(_ progress: CGFloat) {
+        fatalError("SwiftPullToRefresh: subclasses need to implement the updateProgress(_:) method")
     }
     
     override open func willMove(toSuperview newSuperview: UIView?) {
@@ -56,15 +67,23 @@ open class RefreshFooterView: RefreshBaseView {
     override public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         super.scrollViewDidScroll(scrollView)
         
-        if isRefreshing { return }
+        if isRefreshing || scrollView.contentSize.height == 0 { return }
         
-        if scrollView.contentSize.height > 0 && scrollView.contentOffset.y + scrollView.bounds.height > scrollView.contentSize.height + scrollView.contentInset.bottom {
-            beginRefreshing()
-        }
+        progress = min(1, max(0 , (scrollView.contentOffset.y + scrollView.bounds.height - scrollView.contentSize.height - scrollView.contentInset.bottom) / height))
+    }
+    
+    override public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        super.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        
+        if isRefreshing || progress < 1 { return }
+        beginRefreshing()
+        targetContentOffset.pointee.y = scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom
     }
     
     func beginRefreshing() {
         if isRefreshing { return }
+        
+        progress = 1
         isRefreshing = true
         
         UIView.animate(withDuration: 0.4, animations: {
@@ -81,6 +100,7 @@ open class RefreshFooterView: RefreshBaseView {
             self.scrollView?.contentInset.bottom -= self.height
         }, completion: { _ in
             self.isRefreshing = false
+            self.progress = 0
         })
     }
 }

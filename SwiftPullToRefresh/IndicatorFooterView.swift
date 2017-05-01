@@ -15,6 +15,7 @@ final class IndicatorFooterView: RefreshFooterView {
         self.indicatorItem = IndicatorItem(color: color)
         super.init(height: height, action: action)
         
+        layer.addSublayer(indicatorItem.arrowLayer)
         addSubview(indicatorItem.indicator)
     }
     
@@ -26,9 +27,14 @@ final class IndicatorFooterView: RefreshFooterView {
         indicatorItem.updateRefreshState(isRefreshing)
     }
     
+    override func updateProgress(_ progress: CGFloat) {
+        indicatorItem.updateProgress(progress, isHeader: false)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        indicatorItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
         indicatorItem.indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
 }

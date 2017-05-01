@@ -72,17 +72,19 @@ public extension UIScrollView {
     }
     
     public func spr_addIndicatorFooter(color: UIColor = Default.color,
-                                       height: CGFloat = Default.footer,
+                                       height: CGFloat = Default.short,
                                        action: @escaping () -> Void) {
         spr_refreshFooterView = IndicatorFooterView(color: color, height: height, action: action)
     }
     
     public func spr_addTextFooter(loadingText: String = Default.loadingText,
+                                  pullingText: String = Default.pullingFooterText,
+                                  releaseText: String = Default.releaseFooterText,
                                   font: UIFont = Default.font,
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshFooterView = TextFooterView(loadingText: loadingText, font: font, color: color, height: height, action: action)
+        spr_refreshFooterView = TextFooterView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
     public func spr_addCustomHeader(headerView: RefreshHeaderView) {
@@ -111,8 +113,9 @@ struct Default {
     static let loadingText = "Loading..."
     static let pullingText = "Pull down to refresh"
     static let releaseText = "Release to refresh"
+    static let pullingFooterText = "Pull up to load more"
+    static let releaseFooterText = "Release to load more"
     
     static let high: CGFloat = 120
     static let short: CGFloat = 60
-    static let footer: CGFloat = 40
 }
