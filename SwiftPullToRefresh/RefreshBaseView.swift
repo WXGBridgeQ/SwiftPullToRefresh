@@ -10,6 +10,7 @@ import UIKit
 
 open class RefreshBaseView: UIView {
     fileprivate weak var scrollViewDelegate: UIScrollViewDelegate?
+    fileprivate weak var refreshViewDelegate: UIScrollViewDelegate?
     
     var scrollView: UIScrollView? {
         return superview as? UIScrollView
@@ -20,7 +21,11 @@ open class RefreshBaseView: UIView {
     }
     
     override open func didMoveToSuperview() {
-        scrollViewDelegate = scrollView?.delegate
+        if scrollView?.delegate is RefreshBaseView {
+            refreshViewDelegate = scrollView?.delegate
+        } else {
+            scrollViewDelegate = scrollView?.delegate
+        }
         scrollView?.delegate = self
         scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.delegate), options: .new, context: nil)
     }
@@ -36,10 +41,12 @@ open class RefreshBaseView: UIView {
 extension RefreshBaseView: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollViewDelegate?.scrollViewDidScroll?(scrollView)
+        refreshViewDelegate?.scrollViewDidScroll?(scrollView)
     }
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         scrollViewDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+        refreshViewDelegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
     
     public func scrollViewDidZoom(_ scrollView: UIScrollView) {
