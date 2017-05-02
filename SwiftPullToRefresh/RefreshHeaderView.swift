@@ -13,13 +13,13 @@ open class RefreshHeaderView: RefreshBaseView {
     
     let action: () -> Void
     
-    fileprivate var isRefreshing = false {
+    private var isRefreshing = false {
         didSet {
             updateRefreshState(isRefreshing)
         }
     }
     
-    fileprivate var progress: CGFloat = 0 {
+    private var progress: CGFloat = 0 {
         didSet {
             updateProgress(progress)
         }

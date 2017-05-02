@@ -13,34 +13,38 @@ open class RefreshBaseView: UIView {
         return superview as? UIScrollView
     }
     
+    private var panGestureRecognizer: UIPanGestureRecognizer?
+    
     override open func willMove(toSuperview newSuperview: UIView?) {
         scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset))
+        panGestureRecognizer?.removeObserver(self, forKeyPath: #keyPath(UIPanGestureRecognizer.state))
     }
     
     override open func didMoveToSuperview() {
         scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), context: nil)
+        panGestureRecognizer = scrollView?.panGestureRecognizer
+        panGestureRecognizer?.addObserver(self, forKeyPath: #keyPath(UIPanGestureRecognizer.state), context: nil)
     }
     
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard let scrollView = scrollView, keyPath == #keyPath(UIScrollView.contentOffset), object as? UIScrollView == scrollView else { return }
+        guard let scrollView = scrollView else { return }
         
-        scrollViewDidScroll(scrollView)
-        if !scrollView.isDragging {
-//            if self is RefreshHeaderView {
-//                scrollView.setContentOffset(CGPoint(x: 0, y: -scrollView.contentInset.top), animated: true)
-//            }
-//            if self is RefreshFooterView {
-//                scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom), animated: true)
-//            }
-            scrollViewWillEndDragging(scrollView)
+        if keyPath == #keyPath(UIScrollView.contentOffset) {
+            scrollViewDidScroll(scrollView)
+        }
+        
+        if keyPath == #keyPath(UIPanGestureRecognizer.state) {
+            if case .ended = scrollView.panGestureRecognizer.state {
+                scrollViewWillEndDragging(scrollView)
+            }
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        fatalError("SwiftPullToRefresh: should use RefreshHeaderView or RefreshFooterView")
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView) {
-        
+        fatalError("SwiftPullToRefresh: should use RefreshHeaderView or RefreshFooterView")
     }
 }

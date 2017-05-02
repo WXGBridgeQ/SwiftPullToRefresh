@@ -13,13 +13,13 @@ open class RefreshFooterView: RefreshBaseView {
     
     let action: () -> Void
     
-    fileprivate var isRefreshing = false {
+    private var isRefreshing = false {
         didSet {
             updateRefreshState(isRefreshing)
         }
     }
     
-    fileprivate var progress: CGFloat = 0 {
+    private var progress: CGFloat = 0 {
         didSet {
             updateProgress(progress)
         }
@@ -46,21 +46,18 @@ open class RefreshFooterView: RefreshBaseView {
     
     override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        
         scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))
     }
     
     override open func didMoveToSuperview() {
         super.didMoveToSuperview()
-        
         scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize), context: nil)
     }
     
     override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         
-        guard let scrollView = scrollView, keyPath == #keyPath(UIScrollView.contentSize), object as? UIScrollView == scrollView else { return }
-        
+        guard let scrollView = scrollView, keyPath == #keyPath(UIScrollView.contentSize) else { return }
         frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: height)
     }
     
