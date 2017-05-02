@@ -26,12 +26,12 @@ open class RefreshBaseView: UIView {
         
         scrollViewDidScroll(scrollView)
         if !scrollView.isDragging {
-            if self is RefreshHeaderView {
-                scrollView.setContentOffset(CGPoint(x: 0, y: -scrollView.contentInset.top), animated: true)
-            }
-            if self is RefreshFooterView {
-                scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom), animated: true)
-            }
+//            if self is RefreshHeaderView {
+//                scrollView.setContentOffset(CGPoint(x: 0, y: -scrollView.contentInset.top), animated: true)
+//            }
+//            if self is RefreshFooterView {
+//                scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom), animated: true)
+//            }
             scrollViewWillEndDragging(scrollView)
         }
     }
