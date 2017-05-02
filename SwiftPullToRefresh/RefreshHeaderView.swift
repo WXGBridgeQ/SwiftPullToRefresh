@@ -49,19 +49,14 @@ open class RefreshHeaderView: RefreshBaseView {
         frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
     }
     
-    override public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        super.scrollViewDidScroll(scrollView)
-        
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isRefreshing { return }
         progress = min(1, max(0 , -(scrollView.contentOffset.y + scrollView.contentInset.top) / height))
     }
     
-    override public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        super.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
-        
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView) {
         if isRefreshing || progress < 1 { return }
         beginRefreshing()
-        targetContentOffset.pointee.y = -scrollView.contentInset.top
     }
     
     func beginRefreshing() {
