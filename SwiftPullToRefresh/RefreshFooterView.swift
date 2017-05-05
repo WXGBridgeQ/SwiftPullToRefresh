@@ -73,23 +73,23 @@ open class RefreshFooterView: RefreshBaseView {
     }
     
     func beginRefreshing() {
-        if isRefreshing { return }
+        guard let scrollView = scrollView, !isRefreshing else { return }
         
         progress = 1
         isRefreshing = true
         
-        UIView.animate(withDuration: 0.4, animations: {
-            self.scrollView?.contentInset.bottom += self.height
+        UIView.animate(withDuration: 0.3, animations: {
+            scrollView.contentInset.bottom += self.height
         }, completion: { _ in
             self.action()
         })
     }
     
     func endRefreshing() {
-        if !isRefreshing { return }
+        guard let scrollView = scrollView, isRefreshing else { return }
         
-        UIView.animate(withDuration: 0.4, animations: {
-            self.scrollView?.contentInset.bottom -= self.height
+        UIView.animate(withDuration: 0.3, animations: {
+            scrollView.contentInset.bottom -= self.height
         }, completion: { _ in
             self.isRefreshing = false
             self.progress = 0
