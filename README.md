@@ -135,21 +135,11 @@ Add SwiftPullToRefresh folder into your project.
 
 The framework is very easy to customize the use.
 
-You just need to subclass the `RefreshHeaderView` or `RefreshFooterView ` and implement the methods below, then call `spr_addCustomHeader(headerView:)` or `spr_addCustomHeader(headerView:)` to add it to your scrollView.
+You just need to subclass the `RefreshView` and implement the methods below, then call `spr_addCustomHeader(headerView:)` or `spr_addCustomFooter(footerView:)` to add it to your scrollView.
 
 ```swift
-class CustomHeader: RefreshHeaderView {
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        // customize your view display with refresh state here
-    }
-    
-    override func updateProgress(_ progress: CGFloat) {
-        // customize your view display with progress here
-    }
-}
-
-class CustomFooter: RefreshFooterView {
-    override func updateRefreshState(_ isRefreshing: Bool) {
+class CustomHeaderOrFooter: RefreshView {
+    override func updateState(_ isRefreshing: Bool) {
         // customize your view display with refresh state here
     }
     
