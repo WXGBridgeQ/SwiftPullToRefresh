@@ -70,17 +70,6 @@ scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] 
 
 ![](SwiftPullToRefreshDemo/demo05.gif)
 
-#### SuperCat Header (Inspired by [RayWenderlich](https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18))
-
-```swift
-scrollView.spr_addSuperCatHeader { [weak self] in
-    // do your action here
-    // self?.scrollView.spr_endRefreshing()
-}
-```
-
-![](SwiftPullToRefreshDemo/demo06.gif)
-
 #### Indicator Footer
 
 ```swift
@@ -148,6 +137,10 @@ class CustomHeaderOrFooter: RefreshView {
     }
 }
 ```
+
+You can also check the code of the super cat refresh which is a custom header in the SwiftPullToRefreshDemo target (Inspired by [RayWenderlich](https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18))
+
+![](SwiftPullToRefreshDemo/demo06.gif)
 
 ## Contribution
 
