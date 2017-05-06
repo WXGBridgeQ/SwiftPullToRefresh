@@ -1,6 +1,6 @@
 //
-//  IndicatorHeaderView.swift
-//  PullToRefresh
+//  IndicatorHeader.swift
+//  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class IndicatorHeaderView: RefreshHeaderView {
+final class IndicatorHeader: RefreshView {
     private let indicatorItem: IndicatorItem
     
     init(color: UIColor, height: CGFloat, action: @escaping () -> Void) {
@@ -20,11 +20,11 @@ final class IndicatorHeaderView: RefreshHeaderView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
     
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        indicatorItem.updateRefreshState(isRefreshing)
+    override func updateState(_ isRefreshing: Bool) {
+        indicatorItem.updateState(isRefreshing)
     }
     
     override func updateProgress(_ progress: CGFloat) {

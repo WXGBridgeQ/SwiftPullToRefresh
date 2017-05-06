@@ -1,5 +1,5 @@
 //
-//  Indicator.swift
+//  IndicatorItem.swift
 //  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
@@ -36,16 +36,16 @@ final class IndicatorItem {
         indicator.color = color
     }
     
-    func updateRefreshState(_ isRefreshing: Bool) {
+    func updateState(_ isRefreshing: Bool) {
         arrowLayer.isHidden = isRefreshing
         isRefreshing ? indicator.startAnimating() : indicator.stopAnimating()
     }
     
-    func updateProgress(_ progress: CGFloat, isHeader: Bool = true) {
-        if isHeader {
-            arrowLayer.transform = progress == 1 ? CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1) : CATransform3DIdentity
-        } else {
+    func updateProgress(_ progress: CGFloat, isFooter: Bool = false) {
+        if isFooter {
             arrowLayer.transform = progress == 1 ? CATransform3DIdentity : CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
+        } else {
+            arrowLayer.transform = progress == 1 ? CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1) : CATransform3DIdentity
         }
     }
 }

@@ -1,6 +1,6 @@
 //
-//  TextHeaderView.swift
-//  PullToRefresh
+//  TextHeader.swift
+//  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TextHeaderView: RefreshHeaderView {
+final class TextHeader: RefreshView {
     private let indicatorItem: IndicatorItem
     
     private let textItem: TextItem
@@ -24,12 +24,12 @@ final class TextHeaderView: RefreshHeaderView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
     
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        indicatorItem.updateRefreshState(isRefreshing)
-        textItem.updateRefreshState(isRefreshing)
+    override func updateState(_ isRefreshing: Bool) {
+        indicatorItem.updateState(isRefreshing)
+        textItem.updateState(isRefreshing)
     }
     
     override func updateProgress(_ progress: CGFloat) {

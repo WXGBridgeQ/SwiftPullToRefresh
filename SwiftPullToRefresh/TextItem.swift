@@ -32,7 +32,7 @@ final class TextItem {
         label.font = font
     }
     
-    func updateRefreshState(_ isRefreshing: Bool) {
+    func updateState(_ isRefreshing: Bool) {
         label.text = isRefreshing ? loadingText : pullingText
         label.sizeToFit()
     }

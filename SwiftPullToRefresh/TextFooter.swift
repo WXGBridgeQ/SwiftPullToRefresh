@@ -1,5 +1,5 @@
 //
-//  TextFooterView.swift
+//  TextFooter.swift
 //  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/5/1.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TextFooterView: RefreshFooterView {
+final class TextFooter: RefreshView {
     private let indicatorItem: IndicatorItem
     
     private let textItem: TextItem
@@ -16,7 +16,7 @@ final class TextFooterView: RefreshFooterView {
     init(loadingText: String, pullingText: String, releaseText: String, font: UIFont, color: UIColor, height: CGFloat, action: @escaping () -> Void) {
         self.indicatorItem = IndicatorItem(color: color)
         self.textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
-        super.init(height: height, action: action)
+        super.init(height: height, isFooter: true, action: action)
         
         layer.addSublayer(indicatorItem.arrowLayer)
         addSubview(indicatorItem.indicator)
@@ -24,16 +24,16 @@ final class TextFooterView: RefreshFooterView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
     
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        indicatorItem.updateRefreshState(isRefreshing)
-        textItem.updateRefreshState(isRefreshing)
+    override func updateState(_ isRefreshing: Bool) {
+        indicatorItem.updateState(isRefreshing)
+        textItem.updateState(isRefreshing)
     }
     
     override func updateProgress(_ progress: CGFloat) {
-        indicatorItem.updateProgress(progress, isHeader: false)
+        indicatorItem.updateProgress(progress, isFooter: true)
         textItem.updateProgress(progress)
     }
     

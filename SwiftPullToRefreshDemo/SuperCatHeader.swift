@@ -1,19 +1,20 @@
 //
-//  SuperCatHeaderView.swift
-//  PullToRefresh
+//  SuperCatHeader.swift
+//  SwiftPullToRefreshDemo
 //
 //  Created by Leo Zhou on 2017/4/30.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
 //
 
 import UIKit
+import SwiftPullToRefresh
 
-final class SuperCatHeaderView: RefreshHeaderView {
+final class SuperCatHeader: RefreshView {
     private var refreshItems: [RefreshItem] = []
     private var signRefreshItem: RefreshItem!
     private var isSignVisible = false
     
-    override func updateRefreshState(_ isRefreshing: Bool) {
+    override func updateState(_ isRefreshing: Bool) {
         if isRefreshing {
             showSign(false)
             

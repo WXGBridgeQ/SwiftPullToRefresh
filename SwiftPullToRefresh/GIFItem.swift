@@ -42,10 +42,10 @@ final class GIFItem {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
     
-    func updateRefreshState(_ isRefreshing: Bool) {
+    func updateState(_ isRefreshing: Bool) {
         isRefreshing ? imageView.startAnimating() : imageView.stopAnimating()
     }
     

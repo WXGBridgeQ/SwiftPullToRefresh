@@ -1,6 +1,6 @@
 //
 //  TestViewController.swift
-//  PullToRefresh
+//  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
@@ -55,11 +55,12 @@ class TestViewController: UIViewController {
                 }
             }
         case .superCatHeader:
-            scrollView.spr_addSuperCatHeader { [weak self] in
+            let superCatHeader = SuperCatHeader(height: 120) { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
+            scrollView.spr_addCustomHeader(headerView: superCatHeader)
         case .indicatorFooter:
             scrollView.spr_addIndicatorFooter { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

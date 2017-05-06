@@ -1,6 +1,6 @@
 //
-//  GIFHeaderView.swift
-//  PullToRefresh
+//  GIFHeader.swift
+//  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GIFHeaderView: RefreshHeaderView {
+final class GIFHeader: RefreshView {
     private let gifItem: GIFItem
     
     init(data: Data, isBig: Bool, height: CGFloat, action: @escaping () -> Void) {
@@ -19,11 +19,11 @@ final class GIFHeaderView: RefreshHeaderView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
     
-    override func updateRefreshState(_ isRefreshing: Bool) {
-        gifItem.updateRefreshState(isRefreshing)
+    override func updateState(_ isRefreshing: Bool) {
+        gifItem.updateState(isRefreshing)
     }
     
     override func updateProgress(_ progress: CGFloat) {

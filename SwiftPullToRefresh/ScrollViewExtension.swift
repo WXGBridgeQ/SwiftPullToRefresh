@@ -1,6 +1,6 @@
 //
 //  ScrollViewExtension.swift
-//  PullToRefresh
+//  SwiftPullToRefresh
 //
 //  Created by Leo Zhou on 2017/4/30.
 //  Copyright © 2017年 Leo Zhou. All rights reserved.
@@ -8,31 +8,31 @@
 
 import UIKit
 
-private var refreshHeaderViewKey: UInt8 = 0
-private var refreshFooterViewKey: UInt8 = 0
+private var refreshHeaderKey: UInt8 = 0
+private var refreshFooterKey: UInt8 = 0
 
 public extension UIScrollView {
-    private var spr_refreshHeaderView: RefreshHeaderView? {
+    private var spr_refreshHeader: RefreshView? {
         get {
-            return objc_getAssociatedObject(self, &refreshHeaderViewKey) as? RefreshHeaderView
+            return objc_getAssociatedObject(self, &refreshHeaderKey) as? RefreshView
         }
         set {
-            objc_setAssociatedObject(self, &refreshHeaderViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &refreshHeaderKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             newValue.map { insertSubview($0, at: 0) }
         }
     }
     
-    private var spr_refreshFooterView: RefreshFooterView? {
+    private var spr_refreshFooter: RefreshView? {
         get {
-            return objc_getAssociatedObject(self, &refreshFooterViewKey) as? RefreshFooterView
+            return objc_getAssociatedObject(self, &refreshFooterKey) as? RefreshView
         }
         set {
-            objc_setAssociatedObject(self, &refreshFooterViewKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &refreshFooterKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             newValue.map { insertSubview($0, at: 0) }
         }
     }
     
-    /// Indicator style header
+    /// Indicator header
     ///
     /// - Parameters:
     ///   - color: indicator color, default is (R:0, G:0, B:0, A:0.8)
@@ -41,10 +41,10 @@ public extension UIScrollView {
     public func spr_addIndicatorHeader(color: UIColor = Default.color,
                                        height: CGFloat = Default.short,
                                        action: @escaping () -> Void) {
-        spr_refreshHeaderView = IndicatorHeaderView(color: color, height: height, action: action)
+        spr_refreshHeader = IndicatorHeader(color: color, height: height, action: action)
     }
     
-    /// Text style header
+    /// Text header
     ///
     /// - Parameters:
     ///   - loadingText: text display for refreshing, default is 'Loading...'
@@ -61,24 +61,24 @@ public extension UIScrollView {
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshHeaderView = TextHeaderView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        spr_refreshHeader = TextHeader(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
-    /// GIF style header
+    /// GIF header
     ///
     /// - Parameters:
     ///   - data: data for the GIF file
-    ///   - isBig: whether the GIF is displayed with full width
+    ///   - isBig: whether the GIF is displayed with full screen width
     ///   - height: refresh view height and also the trigger requirement
     ///   - action: refresh action
     public func spr_addGIFHeader(data: Data,
                                  isBig: Bool,
                                  height: CGFloat,
                                  action: @escaping () -> Void) {
-        spr_refreshHeaderView = GIFHeaderView(data: data, isBig: isBig, height: height, action: action)
+        spr_refreshHeader = GIFHeader(data: data, isBig: isBig, height: height, action: action)
     }
     
-    /// GIF + Text style header
+    /// GIF + Text header
     ///
     /// - Parameters:
     ///   - data: data for the GIF file
@@ -97,18 +97,10 @@ public extension UIScrollView {
                                      color: UIColor = Default.color,
                                      height: CGFloat = Default.short,
                                      action: @escaping () -> Void) {
-        spr_refreshHeaderView = GIFTextHeaderView(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        spr_refreshHeader = GIFTextHeader(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
-    /// SuperCat style header, inspired by RayWenderlich
-    /// https://videos.raywenderlich.com/courses/68-scroll-view-school/lessons/18
-    ///
-    /// - Parameter action: refresh action
-    public func spr_addSuperCatHeader(action: @escaping () -> Void) {
-        spr_refreshHeaderView = SuperCatHeaderView(height: 120, action: action)
-    }
-    
-    /// Indicator style footer
+    /// Indicator footer
     ///
     /// - Parameters:
     ///   - color: indicator color, default is (R:0, G:0, B:0, A:0.8)
@@ -117,10 +109,10 @@ public extension UIScrollView {
     public func spr_addIndicatorFooter(color: UIColor = Default.color,
                                        height: CGFloat = Default.short,
                                        action: @escaping () -> Void) {
-        spr_refreshFooterView = IndicatorFooterView(color: color, height: height, action: action)
+        spr_refreshFooter = IndicatorFooter(color: color, height: height, action: action)
     }
     
-    /// Text style footer
+    /// Text footer
     ///
     /// - Parameters:
     ///   - loadingText: text display for refreshing, default is 'Loading...'
@@ -137,34 +129,34 @@ public extension UIScrollView {
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshFooterView = TextFooterView(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
-    /// Custom style header
-    /// Subclasses need to implement 'updateRefreshState(_:)' and 'updateProgress(_:)' methods
+    /// Custom header
+    /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
     ///
     /// - Parameter headerView: your custom header subclass
-    public func spr_addCustomHeader(headerView: RefreshHeaderView) {
-        spr_refreshHeaderView = headerView
+    public func spr_addCustomHeader(headerView: RefreshView) {
+        spr_refreshHeader = headerView
     }
     
-    /// Custom style footer
-    /// Subclasses need to implement 'updateRefreshState(_:)' and 'updateProgress(_:)' methods
+    /// Custom footer
+    /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
     ///
     /// - Parameter footerView: your custom footer subclass
-    public func spr_addCustomFooter(footerView: RefreshFooterView) {
-        spr_refreshFooterView = footerView
+    public func spr_addCustomFooter(footerView: RefreshView) {
+        spr_refreshFooter = footerView
     }
     
     /// begin refreshing
     public func spr_beginRefreshing() {
-        spr_refreshHeaderView?.beginRefreshing()
+        spr_refreshHeader?.beginRefreshing()
     }
     
     /// end refreshing
     public func spr_endRefreshing() {
-        spr_refreshHeaderView?.endRefreshing()
-        spr_refreshFooterView?.endRefreshing()
+        spr_refreshHeader?.endRefreshing()
+        spr_refreshFooter?.endRefreshing()
     }
 }
 
