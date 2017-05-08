@@ -1,3 +1,5 @@
+![Logo](logo.png)
+
 [![Build Status](https://travis-ci.org/WXGBridgeQ/SwiftPullToRefresh.svg)](https://travis-ci.org/WXGBridgeQ/SwiftPullToRefresh)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftPullToRefresh.svg)](https://cocoapods.org/pods/SwiftPullToRefresh)
