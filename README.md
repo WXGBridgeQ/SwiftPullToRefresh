@@ -96,7 +96,7 @@ scrollView.spr_addTextFooter { [weak self] in
 
 ## Demo
 
-Open and run the SwiftPullToRefreshDemo target in Xcode to see SwiftPullToRefresh in action.
+Open and run the SwiftPullToRefreshDemo target in Xcode to see SwiftPullToRefresh in more actions.
 
 ## Requirements
 
