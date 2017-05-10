@@ -132,6 +132,38 @@ public extension UIScrollView {
         spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
     
+    /// Indicator auto refresh footer (auto triggered when scroll down to the bottom of the content)
+    ///
+    /// - Parameters:
+    ///   - color: indicator color, default is (R:0, G:0, B:0, A:0.8)
+    ///   - height: refresh view height and also the trigger requirement, default is 60
+    ///   - action: refresh action
+    public func spr_addIndicatorAutoFooter(color: UIColor = Default.color,
+                                       height: CGFloat = Default.short,
+                                       action: @escaping () -> Void) {
+        spr_refreshFooter = IndicatorFooter(color: color, height: height, isAuto: true, action: action)
+    }
+    
+    /// Text auto refresh footer (auto triggered when scroll down to the bottom of the content)
+    ///
+    /// - Parameters:
+    ///   - loadingText: text display for refreshing, default is 'Loading...'
+    ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull up to load more'
+    ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to load more'
+    ///   - font: text font, default is System 14.0
+    ///   - color: color for indicator and text, default is (R:0, G:0, B:0, A:0.8)
+    ///   - height: refresh view height and also the trigger requirement, default is 60
+    ///   - action: refresh action
+    public func spr_addTextAutoFooter(loadingText: String = Default.loadingText,
+                                  pullingText: String = Default.pullingFooterText,
+                                  releaseText: String = Default.releaseFooterText,
+                                  font: UIFont = Default.font,
+                                  color: UIColor = Default.color,
+                                  height: CGFloat = Default.short,
+                                  action: @escaping () -> Void) {
+        spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, isAuto: true, action: action)
+    }
+    
     /// Custom header
     /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
     ///

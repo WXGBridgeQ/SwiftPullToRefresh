@@ -11,7 +11,7 @@ import UIKit
 open class RefreshView: UIView {
     public let height: CGFloat
     
-    private let isFooter: Bool
+    private let style: Style
     
     private let action: () -> Void
     
@@ -33,9 +33,9 @@ open class RefreshView: UIView {
     
     private var panGestureRecognizer: UIPanGestureRecognizer?
     
-    public init(height: CGFloat, isFooter: Bool = false, action: @escaping () -> Void) {
+    public init(height: CGFloat, style: Style = .header, action: @escaping () -> Void) {
         self.height = height
-        self.isFooter = isFooter
+        self.style = style
         self.action = action
         super.init(frame: .zero)
         
@@ -58,7 +58,10 @@ open class RefreshView: UIView {
         scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset))
         panGestureRecognizer?.removeObserver(self, forKeyPath: #keyPath(UIPanGestureRecognizer.state))
         
-        if isFooter {
+        switch style {
+        case .header:
+            break
+        case .footer, .autoFooter:
             scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))
         }
     }
@@ -68,10 +71,11 @@ open class RefreshView: UIView {
         panGestureRecognizer = scrollView?.panGestureRecognizer
         panGestureRecognizer?.addObserver(self, forKeyPath: #keyPath(UIPanGestureRecognizer.state), context: nil)
         
-        if isFooter {
-            scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize), context: nil)
-        } else {
+        switch style {
+        case .header:
             frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
+        case .footer, .autoFooter:
+            scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize), context: nil)
         }
     }
     
@@ -96,11 +100,12 @@ open class RefreshView: UIView {
     private func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isRefreshing { return }
         
-        if isFooter {
-            if scrollView.contentSize.height == 0 { return }
-            progress = min(1, max(0 , (scrollView.contentOffset.y + scrollView.bounds.height - scrollView.contentSize.height - scrollView.contentInset.bottom) / height))
-        } else {
+        switch style {
+        case .header:
             progress = min(1, max(0 , -(scrollView.contentOffset.y + scrollView.contentInset.top) / height))
+        case .footer, .autoFooter:
+            if scrollView.contentSize.height == 0 { break }
+            progress = min(1, max(0 , (scrollView.contentOffset.y + scrollView.bounds.height - scrollView.contentSize.height - scrollView.contentInset.bottom) / height))
         }
     }
     
@@ -116,11 +121,12 @@ open class RefreshView: UIView {
         isRefreshing = true
         
         UIView.animate(withDuration: 0.3, animations: {
-            if self.isFooter {
-                scrollView.contentInset.bottom += self.height
-            } else {
+            switch self.style {
+            case .header:
                 scrollView.contentOffset.y = -self.height - scrollView.contentInset.top
                 scrollView.contentInset.top += self.height
+            case .footer, .autoFooter:
+                scrollView.contentInset.bottom += self.height
             }
         }, completion: { _ in
             self.action()
@@ -131,14 +137,21 @@ open class RefreshView: UIView {
         guard let scrollView = scrollView, isRefreshing else { return }
         
         UIView.animate(withDuration: 0.3, animations: {
-            if self.isFooter {
-                scrollView.contentInset.bottom -= self.height
-            } else {
+            switch self.style {
+            case .header:
                 scrollView.contentInset.top -= self.height
+            case .footer, .autoFooter:
+                scrollView.contentInset.bottom -= self.height
             }
         }, completion: { _ in
             self.isRefreshing = false
             self.progress = 0
         })
+    }
+}
+
+extension RefreshView {
+    public enum Style {
+        case header, footer, autoFooter
     }
 }

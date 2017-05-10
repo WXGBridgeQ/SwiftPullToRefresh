@@ -11,9 +11,12 @@ import UIKit
 final class IndicatorFooter: RefreshView {
     private let indicatorItem: IndicatorItem
     
-    init(color: UIColor, height: CGFloat, action: @escaping () -> Void) {
+    private let isAuto: Bool
+    
+    init(color: UIColor, height: CGFloat, isAuto: Bool = false, action: @escaping () -> Void) {
+        self.isAuto = isAuto
         self.indicatorItem = IndicatorItem(color: color)
-        super.init(height: height, isFooter: true, action: action)
+        super.init(height: height, style: isAuto ? .autoFooter : .footer, action: action)
         
         layer.addSublayer(indicatorItem.arrowLayer)
         addSubview(indicatorItem.indicator)
