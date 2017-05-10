@@ -21,7 +21,10 @@ final class TextFooter: RefreshView {
         self.textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
         super.init(height: height, style: isAuto ? .autoFooter : .footer, action: action)
         
-        layer.addSublayer(indicatorItem.arrowLayer)
+        if !isAuto {
+            layer.addSublayer(indicatorItem.arrowLayer)
+        }
+        
         addSubview(indicatorItem.indicator)
         addSubview(textItem.label)
     }
@@ -43,7 +46,10 @@ final class TextFooter: RefreshView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        indicatorItem.arrowLayer.position = CGPoint(x: (bounds.width - textItem.label.bounds.width - 8) * 0.5, y: bounds.midY)
+        if !isAuto {
+            indicatorItem.arrowLayer.position = CGPoint(x: (bounds.width - textItem.label.bounds.width - 8) * 0.5, y: bounds.midY)
+        }
+        
         indicatorItem.indicator.center = CGPoint(x: (bounds.width - textItem.label.bounds.width - 8) * 0.5, y: bounds.midY)
         textItem.label.center = CGPoint(x: (bounds.width + indicatorItem.indicator.bounds.width + 8) * 0.5, y: bounds.midY)
     }

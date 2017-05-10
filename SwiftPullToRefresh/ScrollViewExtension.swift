@@ -155,8 +155,8 @@ public extension UIScrollView {
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
     public func spr_addTextAutoFooter(loadingText: String = Default.loadingText,
-                                  pullingText: String = Default.pullingFooterText,
-                                  releaseText: String = Default.releaseFooterText,
+                                  pullingText: String = "",
+                                  releaseText: String = "",
                                   font: UIFont = Default.font,
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,

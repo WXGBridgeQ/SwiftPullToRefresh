@@ -73,6 +73,18 @@ class TestViewController: UIViewController {
                     self?.scrollView.spr_endRefreshing()
                 }
             }
+        case .indicatorAutoFooter:
+            scrollView.spr_addIndicatorAutoFooter { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.scrollView.spr_endRefreshing()
+                }
+            }
+        case .textAutoFooter:
+            scrollView.spr_addTextAutoFooter { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.scrollView.spr_endRefreshing()
+                }
+            }
         }
     }
     
@@ -84,6 +96,6 @@ class TestViewController: UIViewController {
 
 extension TestViewController {
     enum Style: Int {
-        case indicatorHeader, textHeader, smallGIFHeader, gifTextHeader, bigGIFHeader, superCatHeader, indicatorFooter, textFooter
+        case indicatorHeader, textHeader, smallGIFHeader, gifTextHeader, bigGIFHeader, superCatHeader, indicatorFooter, textFooter, indicatorAutoFooter, textAutoFooter
     }
 }

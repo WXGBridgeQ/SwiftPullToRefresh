@@ -8,7 +8,7 @@
 
 import UIKit
 
-let refreshViews = ["IndicatorHeader", "TextHeader", "SmallGIFHeader", "GIFTextHeader", "BigGIFHeader", "SuperCatHeader", "IndicatorFooter", "TextFooter"]
+let refreshViews = ["IndicatorHeader", "TextHeader", "SmallGIFHeader", "GIFTextHeader", "BigGIFHeader", "SuperCatHeader", "IndicatorFooter", "TextFooter", "IndicatorAutoFooter", "TextAutoFooter"]
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!

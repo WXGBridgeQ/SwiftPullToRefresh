@@ -18,7 +18,10 @@ final class IndicatorFooter: RefreshView {
         self.indicatorItem = IndicatorItem(color: color)
         super.init(height: height, style: isAuto ? .autoFooter : .footer, action: action)
         
-        layer.addSublayer(indicatorItem.arrowLayer)
+        if !isAuto {
+            layer.addSublayer(indicatorItem.arrowLayer)
+        }
+        
         addSubview(indicatorItem.indicator)
     }
     
@@ -37,7 +40,10 @@ final class IndicatorFooter: RefreshView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        indicatorItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
+        if !isAuto {
+            indicatorItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
+        }
+        
         indicatorItem.indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
 }

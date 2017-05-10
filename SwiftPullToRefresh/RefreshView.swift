@@ -94,6 +94,7 @@ open class RefreshView: UIView {
         
         if keyPath == #keyPath(UIScrollView.contentSize) {
             frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: height)
+            isHidden = scrollView.contentSize.height <= scrollView.bounds.height
         }
     }
     
@@ -103,14 +104,19 @@ open class RefreshView: UIView {
         switch style {
         case .header:
             progress = min(1, max(0 , -(scrollView.contentOffset.y + scrollView.contentInset.top) / height))
-        case .footer, .autoFooter:
-            if scrollView.contentSize.height == 0 { break }
+        case .footer:
+            if scrollView.contentSize.height <= scrollView.bounds.height { break }
             progress = min(1, max(0 , (scrollView.contentOffset.y + scrollView.bounds.height - scrollView.contentSize.height - scrollView.contentInset.bottom) / height))
+        case .autoFooter:
+            if scrollView.contentSize.height <= scrollView.bounds.height { break }
+            if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom {
+                beginRefreshing()
+            }
         }
     }
     
     private func scrollViewWillEndDragging(_ scrollView: UIScrollView) {
-        if isRefreshing || progress < 1 { return }
+        if isRefreshing || progress < 1 || style == .autoFooter { return }
         beginRefreshing()
     }
     
@@ -125,7 +131,10 @@ open class RefreshView: UIView {
             case .header:
                 scrollView.contentOffset.y = -self.height - scrollView.contentInset.top
                 scrollView.contentInset.top += self.height
-            case .footer, .autoFooter:
+            case .footer:
+                scrollView.contentInset.bottom += self.height
+            case .autoFooter:
+                scrollView.contentOffset.y = self.height + scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom
                 scrollView.contentInset.bottom += self.height
             }
         }, completion: { _ in
