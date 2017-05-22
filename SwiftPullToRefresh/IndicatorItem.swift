@@ -10,7 +10,7 @@ import UIKit
 
 final class IndicatorItem {
     private let color: UIColor
-    
+
     lazy var arrowLayer: CAShapeLayer = {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 8))
@@ -19,7 +19,7 @@ final class IndicatorItem {
         path.addLine(to: CGPoint(x: 5.66, y: 2.34))
         path.move(to: CGPoint(x: 0, y: 8))
         path.addLine(to: CGPoint(x: -5.66, y: 2.34))
-        
+
         let layer = CAShapeLayer()
         layer.path = path.cgPath
         layer.strokeColor = self.color.cgColor
@@ -27,20 +27,20 @@ final class IndicatorItem {
         layer.lineCap = kCALineCapRound
         return layer
     }()
-    
+
     let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    
+
     init(color: UIColor) {
         self.color = color
-        
+
         indicator.color = color
     }
-    
+
     func updateState(_ isRefreshing: Bool) {
         arrowLayer.isHidden = isRefreshing
         isRefreshing ? indicator.startAnimating() : indicator.stopAnimating()
     }
-    
+
     func updateProgress(_ progress: CGFloat, isFooter: Bool = false) {
         if isFooter {
             arrowLayer.transform = progress == 1 ? CATransform3DIdentity : CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)

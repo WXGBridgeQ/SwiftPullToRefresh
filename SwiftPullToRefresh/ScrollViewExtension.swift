@@ -21,7 +21,7 @@ public extension UIScrollView {
             newValue.map { insertSubview($0, at: 0) }
         }
     }
-    
+
     private var spr_refreshFooter: RefreshView? {
         get {
             return objc_getAssociatedObject(self, &refreshFooterKey) as? RefreshView
@@ -31,7 +31,7 @@ public extension UIScrollView {
             newValue.map { insertSubview($0, at: 0) }
         }
     }
-    
+
     /// Indicator header
     ///
     /// - Parameters:
@@ -43,7 +43,7 @@ public extension UIScrollView {
                                        action: @escaping () -> Void) {
         spr_refreshHeader = IndicatorHeader(color: color, height: height, action: action)
     }
-    
+
     /// Text header
     ///
     /// - Parameters:
@@ -63,7 +63,7 @@ public extension UIScrollView {
                                   action: @escaping () -> Void) {
         spr_refreshHeader = TextHeader(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
-    
+
     /// GIF header
     ///
     /// - Parameters:
@@ -77,7 +77,7 @@ public extension UIScrollView {
                                  action: @escaping () -> Void) {
         spr_refreshHeader = GIFHeader(data: data, isBig: isBig, height: height, action: action)
     }
-    
+
     /// GIF + Text header
     ///
     /// - Parameters:
@@ -99,7 +99,7 @@ public extension UIScrollView {
                                      action: @escaping () -> Void) {
         spr_refreshHeader = GIFTextHeader(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
-    
+
     /// Indicator footer
     ///
     /// - Parameters:
@@ -111,7 +111,7 @@ public extension UIScrollView {
                                        action: @escaping () -> Void) {
         spr_refreshFooter = IndicatorFooter(color: color, height: height, action: action)
     }
-    
+
     /// Text footer
     ///
     /// - Parameters:
@@ -131,7 +131,7 @@ public extension UIScrollView {
                                   action: @escaping () -> Void) {
         spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
     }
-    
+
     /// Indicator auto refresh footer (auto triggered when scroll down to the bottom of the content)
     ///
     /// - Parameters:
@@ -143,7 +143,7 @@ public extension UIScrollView {
                                        action: @escaping () -> Void) {
         spr_refreshFooter = IndicatorFooter(color: color, height: height, isAuto: true, action: action)
     }
-    
+
     /// Text auto refresh footer (auto triggered when scroll down to the bottom of the content)
     ///
     /// - Parameters:
@@ -163,7 +163,7 @@ public extension UIScrollView {
                                   action: @escaping () -> Void) {
         spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, isAuto: true, action: action)
     }
-    
+
     /// Custom header
     /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
     ///
@@ -171,7 +171,7 @@ public extension UIScrollView {
     public func spr_addCustomHeader(headerView: RefreshView) {
         spr_refreshHeader = headerView
     }
-    
+
     /// Custom footer
     /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
     ///
@@ -179,12 +179,12 @@ public extension UIScrollView {
     public func spr_addCustomFooter(footerView: RefreshView) {
         spr_refreshFooter = footerView
     }
-    
+
     /// begin refreshing
     public func spr_beginRefreshing() {
         spr_refreshHeader?.beginRefreshing()
     }
-    
+
     /// end refreshing
     public func spr_endRefreshing() {
         spr_refreshHeader?.endRefreshing()

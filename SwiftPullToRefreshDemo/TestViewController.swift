@@ -11,12 +11,12 @@ import SwiftPullToRefresh
 
 class TestViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
-    
+
     var style: Style = .indicatorHeader
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         switch style {
         case .indicatorHeader:
             scrollView.spr_addIndicatorHeader { [weak self] in
@@ -32,7 +32,7 @@ class TestViewController: UIViewController {
             }
         case .smallGIFHeader:
             guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
-            
+
             scrollView.spr_addGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
@@ -40,7 +40,7 @@ class TestViewController: UIViewController {
             }
         case .gifTextHeader:
             guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
-            
+
             scrollView.spr_addGIFTextHeader(data: data) { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
@@ -48,7 +48,7 @@ class TestViewController: UIViewController {
             }
         case .bigGIFHeader:
             guard let url = Bundle.main.url(forResource: "demo-big", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
-            
+
             scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.scrollView.spr_endRefreshing()
@@ -87,7 +87,7 @@ class TestViewController: UIViewController {
             }
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.spr_beginRefreshing()
