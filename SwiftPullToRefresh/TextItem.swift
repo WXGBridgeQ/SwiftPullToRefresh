@@ -17,7 +17,7 @@ final class TextItem {
 
     private let font: UIFont
 
-    private let color: UIColor
+    let color: UIColor
 
     let label = UILabel()
 

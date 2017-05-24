@@ -15,10 +15,10 @@ final class TextFooter: RefreshView {
 
     private let isAuto: Bool
 
-    init(loadingText: String, pullingText: String, releaseText: String, font: UIFont, color: UIColor, height: CGFloat, isAuto: Bool = false, action: @escaping () -> Void) {
+    init(textItem: TextItem, height: CGFloat, isAuto: Bool = false, action: @escaping () -> Void) {
         self.isAuto = isAuto
-        self.indicatorItem = IndicatorItem(color: color)
-        self.textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        self.textItem = textItem
+        self.indicatorItem = IndicatorItem(color: textItem.color)
         super.init(height: height, style: isAuto ? .autoFooter : .footer, action: action)
 
         if !isAuto {

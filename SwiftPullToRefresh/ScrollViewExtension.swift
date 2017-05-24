@@ -61,7 +61,8 @@ public extension UIScrollView {
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshHeader = TextHeader(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        spr_refreshHeader = TextHeader(textItem: textItem, height: height, action: action)
     }
 
     /// GIF header
@@ -129,7 +130,8 @@ public extension UIScrollView {
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        spr_refreshFooter = TextFooter(textItem: textItem, height: height, action: action)
     }
 
     /// Indicator auto refresh footer (auto triggered when scroll down to the bottom of the content)
@@ -161,7 +163,8 @@ public extension UIScrollView {
                                   color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        spr_refreshFooter = TextFooter(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, isAuto: true, action: action)
+        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        spr_refreshFooter = TextFooter(textItem: textItem, height: height, isAuto: true, action: action)
     }
 
     /// Custom header
