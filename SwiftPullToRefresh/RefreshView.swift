@@ -88,7 +88,7 @@ open class RefreshView: UIView {
 
         if keyPath == #keyPath(UIPanGestureRecognizer.state) {
             if case .ended = scrollView.panGestureRecognizer.state {
-                scrollViewWillEndDragging(scrollView)
+                scrollViewDidEndDragging(scrollView)
             }
         }
 
@@ -115,7 +115,7 @@ open class RefreshView: UIView {
         }
     }
 
-    private func scrollViewWillEndDragging(_ scrollView: UIScrollView) {
+    private func scrollViewDidEndDragging(_ scrollView: UIScrollView) {
         if isRefreshing || progress < 1 || style == .autoFooter { return }
         beginRefreshing()
     }
