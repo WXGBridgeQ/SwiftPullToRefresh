@@ -20,70 +20,50 @@ class TestViewController: UIViewController {
         switch style {
         case .indicatorHeader:
             scrollView.spr_addIndicatorHeader { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .textHeader:
             scrollView.spr_addTextHeader { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .smallGIFHeader:
             guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
 
             scrollView.spr_addGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .gifTextHeader:
             guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
 
             scrollView.spr_addGIFTextHeader(data: data) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .bigGIFHeader:
             guard let url = Bundle.main.url(forResource: "demo-big", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
 
             scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .superCatHeader:
             let superCatHeader = SuperCatHeader(height: 120) { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
             scrollView.spr_addCustomHeader(headerView: superCatHeader)
         case .indicatorFooter:
             scrollView.spr_addIndicatorFooter { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .textFooter:
             scrollView.spr_addTextFooter { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .indicatorAutoFooter:
             scrollView.spr_addIndicatorAutoFooter { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         case .textAutoFooter:
             scrollView.spr_addTextAutoFooter { [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.scrollView.spr_endRefreshing()
-                }
+                self?.action()
             }
         }
     }
@@ -91,6 +71,12 @@ class TestViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.spr_beginRefreshing()
+    }
+
+    private func action() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.scrollView.spr_endRefreshing()
+        }
     }
 }
 
