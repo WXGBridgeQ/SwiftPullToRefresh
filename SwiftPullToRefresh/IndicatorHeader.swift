@@ -9,10 +9,9 @@
 import UIKit
 
 final class IndicatorHeader: RefreshView {
-    private let indicatorItem: IndicatorItem
+    private let indicatorItem = IndicatorItem()
 
-    init(color: UIColor, height: CGFloat, action: @escaping () -> Void) {
-        self.indicatorItem = IndicatorItem(color: color)
+    init(height: CGFloat, action: @escaping () -> Void) {
         super.init(height: height, action: action)
 
         layer.addSublayer(indicatorItem.arrowLayer)
@@ -23,18 +22,19 @@ final class IndicatorHeader: RefreshView {
         fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
 
-    override func updateState(_ isRefreshing: Bool) {
-        indicatorItem.updateState(isRefreshing)
+    override func didUpdateState(_ isRefreshing: Bool) {
+        indicatorItem.didUpdateState(isRefreshing)
     }
 
-    override func updateProgress(_ progress: CGFloat) {
-        indicatorItem.updateProgress(progress)
+    override func didUpdateProgress(_ progress: CGFloat) {
+        indicatorItem.didUpdateProgress(progress)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        indicatorItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
-        indicatorItem.indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+        indicatorItem.arrowLayer.position = center
+        indicatorItem.indicator.center = center
     }
 }

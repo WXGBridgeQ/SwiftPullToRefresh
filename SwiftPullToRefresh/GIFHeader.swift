@@ -22,12 +22,12 @@ final class GIFHeader: RefreshView {
         fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
 
-    override func updateState(_ isRefreshing: Bool) {
-        gifItem.updateState(isRefreshing)
+    override func didUpdateState(_ isRefreshing: Bool) {
+        gifItem.didUpdateState(isRefreshing)
     }
 
-    override func updateProgress(_ progress: CGFloat) {
-        gifItem.updateProgress(progress)
+    override func didUpdateProgress(_ progress: CGFloat) {
+        gifItem.didUpdateProgress(progress)
     }
 
     override func layoutSubviews() {

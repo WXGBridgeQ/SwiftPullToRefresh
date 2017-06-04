@@ -9,8 +9,6 @@
 import UIKit
 
 final class IndicatorItem {
-    private let color: UIColor
-
     lazy var arrowLayer: CAShapeLayer = {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 8))
@@ -22,7 +20,7 @@ final class IndicatorItem {
 
         let layer = CAShapeLayer()
         layer.path = path.cgPath
-        layer.strokeColor = self.color.cgColor
+        layer.strokeColor = UIColor.black.withAlphaComponent(0.8).cgColor
         layer.lineWidth = 2
         layer.lineCap = kCALineCapRound
         return layer
@@ -30,18 +28,12 @@ final class IndicatorItem {
 
     let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
-    init(color: UIColor) {
-        self.color = color
-
-        indicator.color = color
-    }
-
-    func updateState(_ isRefreshing: Bool) {
+    func didUpdateState(_ isRefreshing: Bool) {
         arrowLayer.isHidden = isRefreshing
         isRefreshing ? indicator.startAnimating() : indicator.stopAnimating()
     }
 
-    func updateProgress(_ progress: CGFloat, isFooter: Bool = false) {
+    func didUpdateProgress(_ progress: CGFloat, isFooter: Bool = false) {
         if isFooter {
             arrowLayer.transform = progress == 1 ? CATransform3DIdentity : CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
         } else {

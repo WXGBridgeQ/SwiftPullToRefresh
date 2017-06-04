@@ -17,13 +17,13 @@ open class RefreshView: UIView {
 
     private var isRefreshing = false {
         didSet {
-            updateState(isRefreshing)
+            didUpdateState(isRefreshing)
         }
     }
 
     private var progress: CGFloat = 0 {
         didSet {
-            updateProgress(progress)
+            didUpdateProgress(progress)
         }
     }
 
@@ -39,19 +39,19 @@ open class RefreshView: UIView {
         self.action = action
         super.init(frame: .zero)
 
-        updateProgress(progress)
+        didUpdateProgress(progress)
     }
 
     public required init?(coder aDecoder: NSCoder) {
         fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
 
-    open func updateState(_ isRefreshing: Bool) {
-        fatalError("SwiftPullToRefresh: updateState(_:) has not been implemented")
+    open func didUpdateState(_ isRefreshing: Bool) {
+        // This method should be implemented by subclasses
     }
 
-    open func updateProgress(_ progress: CGFloat) {
-        fatalError("SwiftPullToRefresh: updateProgress(_:) has not been implemented")
+    open func didUpdateProgress(_ progress: CGFloat) {
+        // This method should be implemented by subclasses
     }
 
     override open func willMove(toSuperview newSuperview: UIView?) {

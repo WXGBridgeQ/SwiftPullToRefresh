@@ -9,13 +9,12 @@
 import UIKit
 
 final class IndicatorFooter: RefreshView {
-    private let indicatorItem: IndicatorItem
+    private let indicatorItem = IndicatorItem()
 
     private let isAuto: Bool
 
-    init(color: UIColor, height: CGFloat, isAuto: Bool = false, action: @escaping () -> Void) {
+    init(height: CGFloat, isAuto: Bool = false, action: @escaping () -> Void) {
         self.isAuto = isAuto
-        self.indicatorItem = IndicatorItem(color: color)
         super.init(height: height, style: isAuto ? .autoFooter : .footer, action: action)
 
         if !isAuto {
@@ -29,21 +28,23 @@ final class IndicatorFooter: RefreshView {
         fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
 
-    override func updateState(_ isRefreshing: Bool) {
-        indicatorItem.updateState(isRefreshing)
+    override func didUpdateState(_ isRefreshing: Bool) {
+        indicatorItem.didUpdateState(isRefreshing)
     }
 
-    override func updateProgress(_ progress: CGFloat) {
-        indicatorItem.updateProgress(progress, isFooter: true)
+    override func didUpdateProgress(_ progress: CGFloat) {
+        indicatorItem.didUpdateProgress(progress, isFooter: true)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+
         if !isAuto {
-            indicatorItem.arrowLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
+            indicatorItem.arrowLayer.position = center
         }
 
-        indicatorItem.indicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        indicatorItem.indicator.center = center
     }
 }

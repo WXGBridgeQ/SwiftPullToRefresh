@@ -13,9 +13,9 @@ final class GIFTextHeader: RefreshView {
 
     private let textItem: TextItem
 
-    init(data: Data, loadingText: String, pullingText: String, releaseText: String, font: UIFont, color: UIColor, height: CGFloat, action: @escaping () -> Void) {
+    init(data: Data, textItem: TextItem, height: CGFloat, action: @escaping () -> Void) {
         self.gifItem = GIFItem(data: data, isBig: false, height: height)
-        self.textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        self.textItem = textItem
         super.init(height: height, action: action)
 
         addSubview(gifItem.imageView)
@@ -26,20 +26,21 @@ final class GIFTextHeader: RefreshView {
         fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
 
-    override func updateState(_ isRefreshing: Bool) {
-        gifItem.updateState(isRefreshing)
-        textItem.updateState(isRefreshing)
+    override func didUpdateState(_ isRefreshing: Bool) {
+        gifItem.didUpdateState(isRefreshing)
+        textItem.didUpdateState(isRefreshing)
     }
 
-    override func updateProgress(_ progress: CGFloat) {
-        gifItem.updateProgress(progress)
-        textItem.updateProgress(progress)
+    override func didUpdateProgress(_ progress: CGFloat) {
+        gifItem.didUpdateProgress(progress)
+        textItem.didUpdateProgress(progress)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        gifItem.imageView.center = CGPoint(x: (bounds.width - textItem.label.bounds.width - 8) * 0.5, y: bounds.midY)
-        textItem.label.center = CGPoint(x: (bounds.width + gifItem.imageView.bounds.width + 8) * 0.5, y: bounds.midY)
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+        gifItem.imageView.center = center.moveLeft(x: textItem.label.bounds.midX + 4)
+        textItem.label.center = center.moveRight(x: gifItem.imageView.bounds.midX + 4)
     }
 }

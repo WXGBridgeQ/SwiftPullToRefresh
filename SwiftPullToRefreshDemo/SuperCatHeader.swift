@@ -14,7 +14,7 @@ final class SuperCatHeader: RefreshView {
     private var signRefreshItem: RefreshItem!
     private var isSignVisible = false
 
-    override func updateState(_ isRefreshing: Bool) {
+    override func didUpdateState(_ isRefreshing: Bool) {
         if isRefreshing {
             showSign(false)
 
@@ -48,7 +48,7 @@ final class SuperCatHeader: RefreshView {
         }
     }
 
-    override func updateProgress(_ progress: CGFloat) {
+    override func didUpdateProgress(_ progress: CGFloat) {
         let value = progress * 0.7 + 0.2
         backgroundColor = UIColor(red: value, green: value, blue: value, alpha: 1.0)
 

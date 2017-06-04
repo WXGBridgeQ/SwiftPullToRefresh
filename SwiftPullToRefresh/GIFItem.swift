@@ -45,11 +45,11 @@ final class GIFItem {
         fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
     }
 
-    func updateState(_ isRefreshing: Bool) {
+    func didUpdateState(_ isRefreshing: Bool) {
         isRefreshing ? imageView.startAnimating() : imageView.stopAnimating()
     }
 
-    func updateProgress(_ progress: CGFloat) {
+    func didUpdateProgress(_ progress: CGFloat) {
         guard let count = imageView.animatedImage?.frameCount else { return }
 
         if progress == 1 {
@@ -73,7 +73,7 @@ protocol AnimatedImage: class {
     subscript(index: Int) -> UIImage { get }
 }
 
-class GIFAnimatedImage: AnimatedImage {
+final class GIFAnimatedImage: AnimatedImage {
     typealias ImageInfo = (image: UIImage, duration: TimeInterval)
     private var images: [ImageInfo] = []
 
@@ -86,14 +86,21 @@ class GIFAnimatedImage: AnimatedImage {
     }
 
     init?(data: Data) {
-        guard let source = CGImageSourceCreateWithData(data as CFData, nil), let type = CGImageSourceGetType(source) else { return nil }
+        guard
+            let source = CGImageSourceCreateWithData(data as CFData, nil),
+            let type = CGImageSourceGetType(source)
+            else { return nil }
 
         let isTypeGIF = UTTypeConformsTo(type, kUTTypeGIF)
         let count = CGImageSourceGetCount(source)
         if !isTypeGIF || count <= 1 { return nil }
 
         for index in 0 ..< count {
-            guard let image = CGImageSourceCreateImageAtIndex(source, index, nil), let info = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? [String : Any], let gifInfo = info[kCGImagePropertyGIFDictionary as String] as? [String: Any] else { continue }
+            guard
+                let image = CGImageSourceCreateImageAtIndex(source, index, nil),
+                let info = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? [String : Any],
+                let gifInfo = info[kCGImagePropertyGIFDictionary as String] as? [String: Any]
+                else { continue }
 
             var duration: Double = 0
             if let unclampedDelay = gifInfo[kCGImagePropertyGIFUnclampedDelayTime as String] as? Double {
@@ -118,7 +125,7 @@ class GIFAnimatedImage: AnimatedImage {
     }
 }
 
-class GIFAnimatedImageView: UIImageView {
+final class GIFAnimatedImageView: UIImageView {
     var animatedImage: AnimatedImage? {
         didSet {
             image = animatedImage?[0]

@@ -15,29 +15,23 @@ final class TextItem {
 
     private let releaseText: String
 
-    private let font: UIFont
-
-    let color: UIColor
-
     let label = UILabel()
 
-    init(loadingText: String, pullingText: String, releaseText: String, font: UIFont, color: UIColor) {
+    init(loadingText: String, pullingText: String, releaseText: String) {
         self.loadingText = loadingText
         self.pullingText = pullingText
         self.releaseText = releaseText
-        self.font = font
-        self.color = color
 
-        label.textColor = color
-        label.font = font
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.black.withAlphaComponent(0.8)
     }
 
-    func updateState(_ isRefreshing: Bool) {
+    func didUpdateState(_ isRefreshing: Bool) {
         label.text = isRefreshing ? loadingText : pullingText
         label.sizeToFit()
     }
 
-    func updateProgress(_ progress: CGFloat) {
+    func didUpdateProgress(_ progress: CGFloat) {
         label.text = progress == 1 ? releaseText : pullingText
         label.sizeToFit()
     }

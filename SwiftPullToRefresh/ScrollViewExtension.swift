@@ -35,13 +35,11 @@ public extension UIScrollView {
     /// Indicator header
     ///
     /// - Parameters:
-    ///   - color: indicator color, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addIndicatorHeader(color: UIColor = Default.color,
-                                       height: CGFloat = Default.short,
+    public func spr_setIndicatorHeader(height: CGFloat = Default.short,
                                        action: @escaping () -> Void) {
-        spr_refreshHeader = IndicatorHeader(color: color, height: height, action: action)
+        spr_refreshHeader = IndicatorHeader(height: height, action: action)
     }
 
     /// Text header
@@ -50,18 +48,14 @@ public extension UIScrollView {
     ///   - loadingText: text display for refreshing, default is 'Loading...'
     ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull down to refresh'
     ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to refresh'
-    ///   - font: text font, default is System 14.0
-    ///   - color: color for indicator and text, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addTextHeader(loadingText: String = Default.loadingText,
+    public func spr_setTextHeader(loadingText: String = Default.loadingText,
                                   pullingText: String = Default.pullingText,
                                   releaseText: String = Default.releaseText,
-                                  font: UIFont = Default.font,
-                                  color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText)
         spr_refreshHeader = TextHeader(textItem: textItem, height: height, action: action)
     }
 
@@ -72,7 +66,7 @@ public extension UIScrollView {
     ///   - isBig: whether the GIF is displayed with full screen width
     ///   - height: refresh view height and also the trigger requirement
     ///   - action: refresh action
-    public func spr_addGIFHeader(data: Data,
+    public func spr_setGIFHeader(data: Data,
                                  isBig: Bool,
                                  height: CGFloat,
                                  action: @escaping () -> Void) {
@@ -86,31 +80,26 @@ public extension UIScrollView {
     ///   - loadingText: text display for refreshing, default is 'Loading...'
     ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull down to refresh'
     ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to refresh'
-    ///   - font: text font, default is System 14.0
-    ///   - color: text color, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addGIFTextHeader(data: Data,
+    public func spr_setGIFTextHeader(data: Data,
                                      loadingText: String = Default.loadingText,
                                      pullingText: String = Default.pullingText,
                                      releaseText: String = Default.releaseText,
-                                     font: UIFont = Default.font,
-                                     color: UIColor = Default.color,
                                      height: CGFloat = Default.short,
                                      action: @escaping () -> Void) {
-        spr_refreshHeader = GIFTextHeader(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color, height: height, action: action)
+        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText)
+        spr_refreshHeader = GIFTextHeader(data: data, textItem: textItem, height: height, action: action)
     }
 
     /// Indicator footer
     ///
     /// - Parameters:
-    ///   - color: indicator color, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addIndicatorFooter(color: UIColor = Default.color,
-                                       height: CGFloat = Default.short,
+    public func spr_setIndicatorFooter(height: CGFloat = Default.short,
                                        action: @escaping () -> Void) {
-        spr_refreshFooter = IndicatorFooter(color: color, height: height, action: action)
+        spr_refreshFooter = IndicatorFooter(height: height, action: action)
     }
 
     /// Text footer
@@ -119,67 +108,55 @@ public extension UIScrollView {
     ///   - loadingText: text display for refreshing, default is 'Loading...'
     ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull up to load more'
     ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to load more'
-    ///   - font: text font, default is System 14.0
-    ///   - color: color for indicator and text, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addTextFooter(loadingText: String = Default.loadingText,
+    public func spr_setTextFooter(loadingText: String = Default.loadingText,
                                   pullingText: String = Default.pullingFooterText,
                                   releaseText: String = Default.releaseFooterText,
-                                  font: UIFont = Default.font,
-                                  color: UIColor = Default.color,
                                   height: CGFloat = Default.short,
                                   action: @escaping () -> Void) {
-        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText)
         spr_refreshFooter = TextFooter(textItem: textItem, height: height, action: action)
     }
 
     /// Indicator auto refresh footer (auto triggered when scroll down to the bottom of the content)
     ///
     /// - Parameters:
-    ///   - color: indicator color, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addIndicatorAutoFooter(color: UIColor = Default.color,
-                                       height: CGFloat = Default.short,
-                                       action: @escaping () -> Void) {
-        spr_refreshFooter = IndicatorFooter(color: color, height: height, isAuto: true, action: action)
+    public func spr_setIndicatorAutoFooter(height: CGFloat = Default.short,
+                                           action: @escaping () -> Void) {
+        spr_refreshFooter = IndicatorFooter(height: height, isAuto: true, action: action)
     }
 
     /// Text auto refresh footer (auto triggered when scroll down to the bottom of the content)
     ///
     /// - Parameters:
     ///   - loadingText: text display for refreshing, default is 'Loading...'
-    ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull up to load more'
-    ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to load more'
-    ///   - font: text font, default is System 14.0
-    ///   - color: color for indicator and text, default is (R:0, G:0, B:0, A:0.8)
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_addTextAutoFooter(loadingText: String = Default.loadingText,
-                                  pullingText: String = "",
-                                  releaseText: String = "",
-                                  font: UIFont = Default.font,
-                                  color: UIColor = Default.color,
-                                  height: CGFloat = Default.short,
-                                  action: @escaping () -> Void) {
-        let textItem = TextItem(loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, font: font, color: color)
+    public func spr_setTextAutoFooter(loadingText: String = Default.loadingText,
+                                      height: CGFloat = Default.short,
+                                      action: @escaping () -> Void) {
+        let textItem = TextItem(loadingText: loadingText, pullingText: "", releaseText: "")
         spr_refreshFooter = TextFooter(textItem: textItem, height: height, isAuto: true, action: action)
     }
 
     /// Custom header
-    /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
+    /// Inherit from RefreshView
+    /// Update the presentation in 'didUpdateState(_:)' and 'didUpdateProgress(_:)' methods
     ///
-    /// - Parameter headerView: your custom header subclass
-    public func spr_addCustomHeader(headerView: RefreshView) {
+    /// - Parameter headerView: your custom header inherited from RefreshView
+    public func spr_setCustomHeader(headerView: RefreshView) {
         spr_refreshHeader = headerView
     }
 
     /// Custom footer
-    /// Subclasses need to implement 'updateState(_:)' and 'updateProgress(_:)' methods
+    /// Inherit from RefreshView
+    /// Update the presentation in 'didUpdateState(_:)' and 'didUpdateProgress(_:)' methods
     ///
-    /// - Parameter footerView: your custom footer subclass
-    public func spr_addCustomFooter(footerView: RefreshView) {
+    /// - Parameter footerView: your custom footer inherited from RefreshView
+    public func spr_setCustomFooter(footerView: RefreshView) {
         spr_refreshFooter = footerView
     }
 
