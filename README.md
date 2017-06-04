@@ -18,7 +18,7 @@ Provide default style header and footer controls which you can directly use in y
 #### Indicator Header
 
 ```swift
-scrollView.spr_addIndicatorHeader { [weak self] in
+scrollView.spr_setIndicatorHeader { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -31,7 +31,7 @@ scrollView.spr_addIndicatorHeader { [weak self] in
 Text, font, color can be customized.
 
 ```swift
-scrollView.spr_addTextHeader { [weak self] in
+scrollView.spr_setTextHeader { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -42,7 +42,7 @@ scrollView.spr_addTextHeader { [weak self] in
 #### Small GIF Header
 
 ```swift
-scrollView.spr_addGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
+scrollView.spr_setGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -53,7 +53,7 @@ scrollView.spr_addGIFHeader(data: data, isBig: false, height: 60) { [weak self] 
 #### GIF + Text Header
 
 ```swift
-scrollView.spr_addGIFTextHeader(data: data) { [weak self] in
+scrollView.spr_setGIFTextHeader(data: data) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -64,7 +64,7 @@ scrollView.spr_addGIFTextHeader(data: data) { [weak self] in
 #### Big GIF Header
 
 ```swift
-scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
+scrollView.spr_setGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -75,7 +75,16 @@ scrollView.spr_addGIFHeader(data: data, isBig: true, height: 120) { [weak self] 
 #### Indicator Footer
 
 ```swift
-scrollView.spr_addIndicatorFooter { [weak self] in
+scrollView.spr_setIndicatorFooter { [weak self] in
+    // do your action here
+    // self?.scrollView.spr_endRefreshing()
+}
+```
+
+or
+
+```swift
+scrollView.spr_setIndicatorAutoFooter { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -86,7 +95,16 @@ scrollView.spr_addIndicatorFooter { [weak self] in
 #### Text Footer
 
 ```swift
-scrollView.spr_addTextFooter { [weak self] in
+scrollView.spr_setTextFooter { [weak self] in
+    // do your action here
+    // self?.scrollView.spr_endRefreshing()
+}
+```
+
+or
+
+```swift
+scrollView.spr_setTextAutoFooter { [weak self] in
     // do your action here
     // self?.scrollView.spr_endRefreshing()
 }
@@ -126,15 +144,15 @@ Add SwiftPullToRefresh folder into your project.
 
 The framework is very easy to customize the use.
 
-You just need to subclass the `RefreshView` and implement the methods below, then call `spr_addCustomHeader(headerView:)` or `spr_addCustomFooter(footerView:)` to add it to your scrollView.
+You just need to subclass the `RefreshView` and implement the methods below, then call `spr_setCustomHeader(headerView:)` or `spr_setCustomFooter(footerView:)` with your scrollView.
 
 ```swift
 class CustomHeaderOrFooter: RefreshView {
-    override func updateState(_ isRefreshing: Bool) {
+    override func didUpdateState(_ isRefreshing: Bool) {
         // customize your view display with refresh state here
     }
     
-    override func updateProgress(_ progress: CGFloat) {
+    override func didUpdateProgress(_ progress: CGFloat) {
         // customize your view display with progress here
     }
 }
