@@ -6,6 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/SwiftPullToRefresh.svg)](https://cocoapods.org/pods/SwiftPullToRefresh)
 [![Language](https://img.shields.io/badge/language-swift-orange.svg)](https://swift.org/)
 [![License](https://img.shields.io/badge/license-MIT-000000.svg)](https://github.com/WXGBridgeQ/SwiftPullToRefresh/blob/master/LICENSE)
+[![codebeat badge](https://codebeat.co/badges/05eca7f9-68b2-4ca1-aa72-abe7edc5aff2)](https://codebeat.co/projects/github-com-wxgbridgeq-swiftpulltorefresh-master)
 
 # SwiftPullToRefresh
 
