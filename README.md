@@ -29,8 +29,6 @@ scrollView.spr_setIndicatorHeader { [weak self] in
 
 #### Text Header
 
-Text, font, color can be customized.
-
 ```swift
 scrollView.spr_setTextHeader { [weak self] in
     // do your action here
