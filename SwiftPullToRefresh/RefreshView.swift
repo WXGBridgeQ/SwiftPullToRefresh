@@ -142,7 +142,7 @@ open class RefreshView: UIView {
         })
     }
 
-    func endRefreshing() {
+    func endRefreshing(completion: (() -> Void)? = nil) {
         guard let scrollView = scrollView, isRefreshing else { return }
 
         UIView.animate(withDuration: 0.3, animations: {
@@ -155,6 +155,7 @@ open class RefreshView: UIView {
         }, completion: { _ in
             self.isRefreshing = false
             self.progress = 0
+            completion?()
         })
     }
 }

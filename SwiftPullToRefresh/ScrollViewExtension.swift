@@ -138,7 +138,7 @@ public extension UIScrollView {
     public func spr_setTextAutoFooter(loadingText: String = Default.loadingText,
                                       height: CGFloat = Default.short,
                                       action: @escaping () -> Void) {
-        let textItem = TextItem(loadingText: loadingText, pullingText: "", releaseText: "")
+        let textItem = TextItem(loadingText: loadingText)
         spr_refreshFooter = TextFooter(textItem: textItem, height: height, isAuto: true, action: action)
     }
 
@@ -160,15 +160,34 @@ public extension UIScrollView {
         spr_refreshFooter = footerView
     }
 
-    /// begin refreshing
+    /// begin refreshing with header
     public func spr_beginRefreshing() {
         spr_refreshHeader?.beginRefreshing()
     }
 
-    /// end refreshing
+    /// end refreshing with both header and footer
     public func spr_endRefreshing() {
         spr_refreshHeader?.endRefreshing()
         spr_refreshFooter?.endRefreshing()
+    }
+
+    /// end refreshing with footer and remove it
+    ///
+    /// - Parameter message: show a label with message below the content, default is nil
+    public func spr_endRefreshingWithNoMoreData(message: String? = nil) {
+        spr_refreshFooter?.endRefreshing { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.spr_refreshFooter?.removeFromSuperview()
+            strongSelf.spr_refreshFooter = nil
+
+            let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: 14)
+            label.textColor = UIColor.black.withAlphaComponent(0.8)
+            label.text = message
+            label.sizeToFit()
+            label.center = CGPoint(x: strongSelf.bounds.midX, y: strongSelf.contentSize.height + 24)
+            strongSelf.addSubview(label)
+        }
     }
 }
 

@@ -17,7 +17,7 @@ final class TextItem {
 
     let label = UILabel()
 
-    init(loadingText: String, pullingText: String, releaseText: String) {
+    init(loadingText: String, pullingText: String = "", releaseText: String = "") {
         self.loadingText = loadingText
         self.pullingText = pullingText
         self.releaseText = releaseText
