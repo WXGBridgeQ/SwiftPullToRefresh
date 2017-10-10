@@ -193,14 +193,15 @@ public extension UIScrollView {
 
 // MARK: default values
 
-struct Default {
-    static let color: UIColor = UIColor.black.withAlphaComponent(0.8)
-    static let font: UIFont = UIFont.systemFont(ofSize: 14)
-    static let loadingText = "Loading..."
-    static let pullingText = "Pull down to refresh"
-    static let releaseText = "Release to refresh"
-    static let pullingFooterText = "Pull up to load more"
-    static let releaseFooterText = "Release to load more"
-    static let high: CGFloat = 120
-    static let short: CGFloat = 60
+public class Default
+{
+    public static let color: UIColor = UIColor.black.withAlphaComponent(0.8)
+    public static let font: UIFont = UIFont.systemFont(ofSize: 14)
+    public static let loadingText = "Loading..."
+    public static let pullingText = "Pull down to refresh"
+    public static let releaseText = "Release to refresh"
+    public static let pullingFooterText = "Pull up to load more"
+    public static let releaseFooterText = "Release to load more"
+    public static let high: CGFloat = 120
+    public static let short: CGFloat = 60
 }
