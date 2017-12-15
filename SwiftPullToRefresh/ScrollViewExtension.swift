@@ -192,7 +192,6 @@ public extension UIScrollView {
 }
 
 // MARK: default values
-
 public struct DefaultSPTR {
     public static let color: UIColor = UIColor.black.withAlphaComponent(0.8)
     public static let font: UIFont = UIFont.systemFont(ofSize: 14)
