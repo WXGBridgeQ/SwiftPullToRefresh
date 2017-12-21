@@ -1,23 +1,25 @@
 //
 //  TestViewController.swift
-//  SwiftPullToRefresh
+//  SwiftPullToRefreshDemo
 //
-//  Created by Leo Zhou on 2017/4/30.
-//  Copyright © 2017年 Leo Zhou. All rights reserved.
+//  Created by Leo Zhou on 2017/12/19.
+//  Copyright © 2017年 Wiredcraft. All rights reserved.
 //
 
 import UIKit
 import SwiftPullToRefresh
 
 class TestViewController: UIViewController {
+
     @IBOutlet weak var scrollView: UIScrollView!
 
-    var style: Style = .indicatorHeader
+    var refresh: Refresh = .indicatorHeader
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = refresh.rawValue
 
-        switch style {
+        switch refresh {
         case .indicatorHeader:
             scrollView.spr_setIndicatorHeader { [weak self] in
                 self?.action()
@@ -27,28 +29,31 @@ class TestViewController: UIViewController {
                 self?.action()
             }
         case .smallGIFHeader:
-            guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
-
-            scrollView.spr_setGIFHeader(data: data, isBig: false, height: 60) { [weak self] in
-                self?.action()
-            }
-        case .gifTextHeader:
-            guard let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
-
-            scrollView.spr_setGIFTextHeader(data: data) { [weak self] in
+            guard
+                let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"),
+                let data = try? Data(contentsOf: url) else { return }
+            scrollView.spr_setGIFHeader(data: data) { [weak self] in
                 self?.action()
             }
         case .bigGIFHeader:
-            guard let url = Bundle.main.url(forResource: "demo-big", withExtension: "gif"), let data = try? Data(contentsOf: url) else { return }
-
+            guard
+                let url = Bundle.main.url(forResource: "demo-big", withExtension: "gif"),
+                let data = try? Data(contentsOf: url) else { return }
             scrollView.spr_setGIFHeader(data: data, isBig: true, height: 120) { [weak self] in
                 self?.action()
             }
-        case .superCatHeader:
-            let superCatHeader = SuperCatHeader(height: 120) { [weak self] in
+        case .gifTextHeader:
+            guard
+                let url = Bundle.main.url(forResource: "demo-small", withExtension: "gif"),
+                let data = try? Data(contentsOf: url) else { return }
+            scrollView.spr_setGIFTextHeader(data: data) { [weak self] in
                 self?.action()
             }
-            scrollView.spr_setCustomHeader(headerView: superCatHeader)
+        case .superCatHeader:
+            let header = SuperCatHeader(style: .header, height: 120) { [weak self] in
+                self?.action()
+            }
+            scrollView.spr_setCustomHeader(header)
         case .indicatorFooter:
             scrollView.spr_setIndicatorFooter { [weak self] in
                 self?.action()
@@ -78,10 +83,5 @@ class TestViewController: UIViewController {
             self.scrollView.spr_endRefreshing()
         }
     }
-}
 
-extension TestViewController {
-    enum Style: Int {
-        case indicatorHeader, textHeader, smallGIFHeader, gifTextHeader, bigGIFHeader, superCatHeader, indicatorFooter, textFooter, indicatorAutoFooter, textAutoFooter
-    }
 }

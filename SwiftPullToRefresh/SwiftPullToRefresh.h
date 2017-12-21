@@ -2,8 +2,8 @@
 //  SwiftPullToRefresh.h
 //  SwiftPullToRefresh
 //
-//  Created by Leo Zhou on 2017/4/30.
-//  Copyright © 2017年 Leo Zhou. All rights reserved.
+//  Created by Leo Zhou on 2017/12/19.
+//  Copyright © 2017年 Wiredcraft. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

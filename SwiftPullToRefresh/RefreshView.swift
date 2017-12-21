@@ -2,99 +2,74 @@
 //  RefreshView.swift
 //  SwiftPullToRefresh
 //
-//  Created by Leo Zhou on 2017/4/30.
-//  Copyright © 2017年 Leo Zhou. All rights reserved.
+//  Created by Leo Zhou on 2017/12/19.
+//  Copyright © 2017年 Wiredcraft. All rights reserved.
 //
 
 import UIKit
 
 open class RefreshView: UIView {
-    public let height: CGFloat
+
+    public enum Style {
+        case header, footer, autoFooter
+    }
 
     private let style: Style
-
+    public let height: CGFloat
     private let action: () -> Void
 
+    public init(style: Style, height: CGFloat, action: @escaping () -> Void) {
+        self.style = style
+        self.height = height
+        self.action = action
+        super.init(frame: .zero)
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private var isRefreshing = false {
-        didSet {
-            didUpdateState(isRefreshing)
-        }
+        didSet { didUpdateState(isRefreshing) }
     }
 
     private var progress: CGFloat = 0 {
-        didSet {
-            didUpdateProgress(progress)
-        }
+        didSet { didUpdateProgress(progress) }
+    }
+
+    open func didUpdateState(_ isRefreshing: Bool) {
+        fatalError("didUpdateState(_:) has not been implemented")
+    }
+
+    open func didUpdateProgress(_ progress: CGFloat) {
+        fatalError("didUpdateProgress(_:) has not been implemented")
     }
 
     private var scrollView: UIScrollView? {
         return superview as? UIScrollView
     }
 
-    private var panGestureRecognizer: UIPanGestureRecognizer?
-
-    public init(height: CGFloat, style: Style = .header, action: @escaping () -> Void) {
-        self.height = height
-        self.style = style
-        self.action = action
-        super.init(frame: .zero)
-
-        didUpdateProgress(progress)
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("SwiftPullToRefresh: init(coder:) has not been implemented")
-    }
-
-    open func didUpdateState(_ isRefreshing: Bool) {
-        // This method should be implemented by subclasses
-    }
-
-    open func didUpdateProgress(_ progress: CGFloat) {
-        // This method should be implemented by subclasses
-    }
-
-    override open func willMove(toSuperview newSuperview: UIView?) {
-        scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset))
-        panGestureRecognizer?.removeObserver(self, forKeyPath: #keyPath(UIPanGestureRecognizer.state))
-
-        switch style {
-        case .header:
-            break
-        case .footer, .autoFooter:
-            scrollView?.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))
-        }
-    }
+    private var offsetToken: NSKeyValueObservation?
+    private var stateToken: NSKeyValueObservation?
+    private var sizeToken: NSKeyValueObservation?
 
     override open func didMoveToSuperview() {
-        scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentOffset), context: nil)
-        panGestureRecognizer = scrollView?.panGestureRecognizer
-        panGestureRecognizer?.addObserver(self, forKeyPath: #keyPath(UIPanGestureRecognizer.state), context: nil)
-
-        switch style {
-        case .header:
-            frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
-        case .footer, .autoFooter:
-            scrollView?.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize), context: nil)
-        }
-    }
-
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let scrollView = scrollView else { return }
 
-        if keyPath == #keyPath(UIScrollView.contentOffset) {
-            scrollViewDidScroll(scrollView)
+        offsetToken = scrollView.observe(\.contentOffset) { _, _ in
+            self.scrollViewDidScroll(scrollView)
+        }
+        stateToken = scrollView.panGestureRecognizer.observe(\.state) { _, _ in
+            self.scrollViewDidEndDragging(scrollView)
         }
 
-        if keyPath == #keyPath(UIPanGestureRecognizer.state) {
-            if case .ended = scrollView.panGestureRecognizer.state {
-                scrollViewDidEndDragging(scrollView)
+        if style == .header {
+            frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
+        } else {
+            sizeToken = scrollView.observe(\.contentSize) { _, _ in
+                self.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self.height)
+                self.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
-        }
-
-        if keyPath == #keyPath(UIScrollView.contentSize) {
-            frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: height)
-            isHidden = scrollView.contentSize.height <= scrollView.bounds.height
         }
     }
 
@@ -125,25 +100,27 @@ open class RefreshView: UIView {
 
         progress = 1
         isRefreshing = true
-
-        UIView.animate(withDuration: 0.3, animations: {
-            switch self.style {
-            case .header:
-                scrollView.contentOffset.y = -self.height - scrollView.contentInset.top
-                scrollView.contentInset.top += self.height
-            case .footer:
-                scrollView.contentInset.bottom += self.height
-            case .autoFooter:
-                scrollView.contentOffset.y = self.height + scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom
-                scrollView.contentInset.bottom += self.height
-            }
-        }, completion: { _ in
-            self.action()
-        })
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, animations: {
+                switch self.style {
+                case .header:
+                    scrollView.contentOffset.y = -self.height - scrollView.contentInset.top
+                    scrollView.contentInset.top += self.height
+                case .footer:
+                    scrollView.contentInset.bottom += self.height
+                case .autoFooter:
+                    scrollView.contentOffset.y = self.height + scrollView.contentSize.height - scrollView.bounds.height + scrollView.contentInset.bottom
+                    scrollView.contentInset.bottom += self.height
+                }
+            }, completion: { _ in
+                self.action()
+            })
+        }
     }
 
     func endRefreshing(completion: (() -> Void)? = nil) {
-        guard let scrollView = scrollView, isRefreshing else { return }
+        guard let scrollView = scrollView else { return }
+        guard isRefreshing else { completion?(); return }
 
         UIView.animate(withDuration: 0.3, animations: {
             switch self.style {
@@ -158,10 +135,5 @@ open class RefreshView: UIView {
             completion?()
         })
     }
-}
 
-extension RefreshView {
-    public enum Style {
-        case header, footer, autoFooter
-    }
 }

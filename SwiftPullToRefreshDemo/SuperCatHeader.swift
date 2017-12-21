@@ -2,14 +2,15 @@
 //  SuperCatHeader.swift
 //  SwiftPullToRefreshDemo
 //
-//  Created by Leo Zhou on 2017/4/30.
-//  Copyright © 2017年 Leo Zhou. All rights reserved.
+//  Created by Leo Zhou on 2017/12/21.
+//  Copyright © 2017年 Wiredcraft. All rights reserved.
 //
 
 import UIKit
 import SwiftPullToRefresh
 
 final class SuperCatHeader: RefreshView {
+
     private var refreshItems: [RefreshItem] = []
     private var signRefreshItem: RefreshItem!
     private var isSignVisible = false
@@ -98,9 +99,11 @@ final class SuperCatHeader: RefreshView {
             self.signRefreshItem.updateViewPositionForPercentage(show ? 1 : 0)
         }, completion: nil)
     }
+
 }
 
 private final class RefreshItem {
+
     private var centerStart: CGPoint
     private var centerEnd: CGPoint
     unowned var view: UIView
@@ -115,4 +118,5 @@ private final class RefreshItem {
     func updateViewPositionForPercentage(_ percentage: CGFloat) {
         view.center = CGPoint(x: centerStart.x + (centerEnd.x - centerStart.x) * percentage, y: centerStart.y + (centerEnd.y - centerStart.y) * percentage)
     }
+
 }

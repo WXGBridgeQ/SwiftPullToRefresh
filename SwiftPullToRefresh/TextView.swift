@@ -1,14 +1,14 @@
 //
-//  GIFTextHeader.swift
+//  TextView.swift
 //  SwiftPullToRefresh
 //
-//  Created by Leo Zhou on 2017/12/21.
+//  Created by Leo Zhou on 2017/12/20.
 //  Copyright © 2017年 Wiredcraft. All rights reserved.
 //
 
 import UIKit
 
-class GIFTextHeader: GIFHeader {
+class TextView: IndicatorView {
 
     private let loadingText: String
     private let pullingText: String
@@ -21,12 +21,15 @@ class GIFTextHeader: GIFHeader {
         return label
     }()
 
-    init(data: Data, loadingText: String, pullingText: String, releaseText: String,
+    private let isHeader: Bool
+
+    init(isHeader: Bool, loadingText: String, pullingText: String, releaseText: String,
          height: CGFloat, action: @escaping () -> Void) {
+        self.isHeader = isHeader
         self.loadingText = loadingText
         self.pullingText = pullingText
         self.releaseText = releaseText
-        super.init(data: data, isBig: false, height: height, action: action)
+        super.init(isHeader: isHeader, height: height, action: action)
         addSubview(label)
     }
 
@@ -37,8 +40,9 @@ class GIFTextHeader: GIFHeader {
     override func layoutSubviews() {
         super.layoutSubviews()
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        imageView.center = center.move(x: -label.bounds.midX - 4)
-        label.center = center.move(x: imageView.bounds.midX + 4)
+        arrowLayer.position = center.move(x: -label.bounds.midX - 4)
+        indicator.center = center.move(x: -label.bounds.midX - 4)
+        label.center = center.move(x: indicator.bounds.midX + 4)
     }
 
     override func didUpdateState(_ isRefreshing: Bool) {
@@ -53,4 +57,10 @@ class GIFTextHeader: GIFHeader {
         label.sizeToFit()
     }
 
+}
+
+extension CGPoint {
+    func move(x: CGFloat) -> CGPoint {
+        return CGPoint(x: self.x + x, y: y)
+    }
 }
