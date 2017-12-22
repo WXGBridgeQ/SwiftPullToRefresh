@@ -122,18 +122,20 @@ open class RefreshView: UIView {
         guard let scrollView = scrollView else { return }
         guard isRefreshing else { completion?(); return }
 
-        UIView.animate(withDuration: 0.3, animations: {
-            switch self.style {
-            case .header:
-                scrollView.contentInset.top -= self.height
-            case .footer, .autoFooter:
-                scrollView.contentInset.bottom -= self.height
-            }
-        }, completion: { _ in
-            self.isRefreshing = false
-            self.progress = 0
-            completion?()
-        })
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, animations: {
+                switch self.style {
+                case .header:
+                    scrollView.contentInset.top -= self.height
+                case .footer, .autoFooter:
+                    scrollView.contentInset.bottom -= self.height
+                }
+            }, completion: { _ in
+                self.isRefreshing = false
+                self.progress = 0
+                completion?()
+            })
+        }
     }
 
 }

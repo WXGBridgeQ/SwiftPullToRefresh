@@ -10,6 +10,7 @@ import UIKit
 
 private var headerKey: UInt8 = 0
 private var footerKey: UInt8 = 0
+private var tempFooterKey: UInt8 = 0
 
 public extension UIScrollView {
 
@@ -32,6 +33,15 @@ public extension UIScrollView {
             spr_footer?.removeFromSuperview()
             objc_setAssociatedObject(self, &footerKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             newValue.map { insertSubview($0, at: 0) }
+        }
+    }
+
+    private var spr_tempFooter: RefreshView? {
+        get {
+            return objc_getAssociatedObject(self, &tempFooterKey) as? RefreshView
+        }
+        set {
+            objc_setAssociatedObject(self, &tempFooterKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -124,8 +134,16 @@ public extension UIScrollView {
 
     /// end refreshing with footer and remove it
     public func spr_endRefreshingWithNoMoreData() {
+        spr_tempFooter = spr_footer
         spr_footer?.endRefreshing { [weak self] in
             self?.spr_footer = nil
+        }
+    }
+
+    /// reset footer which is set to no more data
+    public func spr_resetNoMoreData() {
+        if spr_footer == nil {
+            spr_footer = spr_tempFooter
         }
     }
 
