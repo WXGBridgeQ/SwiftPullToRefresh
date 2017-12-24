@@ -10,9 +10,7 @@ import UIKit
 
 class GIFTextHeader: GIFHeader {
 
-    private let loadingText: String
-    private let pullingText: String
-    private let releaseText: String
+    private let refreshText: RefreshText
 
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -21,11 +19,8 @@ class GIFTextHeader: GIFHeader {
         return label
     }()
 
-    init(data: Data, loadingText: String, pullingText: String, releaseText: String,
-         height: CGFloat, action: @escaping () -> Void) {
-        self.loadingText = loadingText
-        self.pullingText = pullingText
-        self.releaseText = releaseText
+    init(data: Data, refreshText: RefreshText, height: CGFloat, action: @escaping () -> Void) {
+        self.refreshText = refreshText
         super.init(data: data, isBig: false, height: height, action: action)
         addSubview(label)
     }
@@ -43,13 +38,13 @@ class GIFTextHeader: GIFHeader {
 
     override func didUpdateState(_ isRefreshing: Bool) {
         super.didUpdateState(isRefreshing)
-        label.text = isRefreshing ? loadingText : pullingText
+        label.text = isRefreshing ? refreshText.loadingText : refreshText.pullingText
         label.sizeToFit()
     }
 
     override func didUpdateProgress(_ progress: CGFloat) {
         super.didUpdateProgress(progress)
-        label.text = progress == 1 ? releaseText : pullingText
+        label.text = progress == 1 ? refreshText.releaseText : refreshText.pullingText
         label.sizeToFit()
     }
 

@@ -58,17 +58,13 @@ public extension UIScrollView {
     /// Indicator + Text header
     ///
     /// - Parameters:
-    ///   - loadingText: text display for refreshing, default is 'Loading...'
-    ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull down to refresh'
-    ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to refresh'
+    ///   - refreshText: text display for different states
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_setTextHeader(loadingText: String = "Loading...",
-                                  pullingText: String = "Pull down to refresh",
-                                  releaseText: String = "Release to refresh",
+    public func spr_setTextHeader(refreshText: RefreshText = headerText,
                                   height: CGFloat = 60,
                                   action: @escaping () -> Void) {
-        spr_header = TextView(isHeader: true, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, height: height, action: action)
+        spr_header = TextView(isHeader: true, refreshText: refreshText, height: height, action: action)
     }
 
     /// GIF header
@@ -89,18 +85,14 @@ public extension UIScrollView {
     ///
     /// - Parameters:
     ///   - data: data for the GIF file
-    ///   - loadingText: text display for refreshing, default is 'Loading...'
-    ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull down to refresh'
-    ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to refresh'
+    ///   - refreshText: text display for different states
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
     public func spr_setGIFTextHeader(data: Data,
-                                     loadingText: String = "Loading...",
-                                     pullingText: String = "Pull down to refresh",
-                                     releaseText: String = "Release to refresh",
+                                     refreshText: RefreshText = headerText,
                                      height: CGFloat = 60,
                                      action: @escaping () -> Void) {
-        spr_header = GIFTextHeader(data: data, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, height: height, action: action)
+        spr_header = GIFTextHeader(data: data, refreshText: refreshText, height: height, action: action)
     }
 
     /// Custom header
@@ -121,18 +113,18 @@ public extension UIScrollView {
         self.spr_footer = footer
     }
 
-    /// begin refreshing with header
+    /// Begin refreshing with header
     public func spr_beginRefreshing() {
         spr_header?.beginRefreshing()
     }
 
-    /// end refreshing with both header and footer
+    /// End refreshing with both header and footer
     public func spr_endRefreshing() {
         spr_header?.endRefreshing()
         spr_footer?.endRefreshing()
     }
 
-    /// end refreshing with footer and remove it
+    /// End refreshing with footer and remove it
     public func spr_endRefreshingWithNoMoreData() {
         spr_tempFooter = spr_footer
         spr_footer?.endRefreshing { [weak self] in
@@ -140,7 +132,7 @@ public extension UIScrollView {
         }
     }
 
-    /// reset footer which is set to no more data
+    /// Reset footer which is set to no more data
     public func spr_resetNoMoreData() {
         if spr_footer == nil {
             spr_footer = spr_tempFooter
@@ -160,17 +152,13 @@ public extension UIScrollView {
     /// Indicator + Text footer
     ///
     /// - Parameters:
-    ///   - loadingText: text display for refreshing, default is 'Loading...'
-    ///   - pullingText: text display for dragging when don't reach the trigger, default is 'Pull up to load more'
-    ///   - releaseText: text display for dragging when reach the trigger, default is 'Release to load more'
+    ///   - refreshText: text display for different states
     ///   - height: refresh view height and also the trigger requirement, default is 60
     ///   - action: refresh action
-    public func spr_setTextFooter(loadingText: String = "Loading...",
-                                  pullingText: String = "Pull up to load more",
-                                  releaseText: String = "Release to load more",
+    public func spr_setTextFooter(refreshText: RefreshText = footerText,
                                   height: CGFloat = 60,
                                   action: @escaping () -> Void) {
-        spr_footer = TextView(isHeader: false, loadingText: loadingText, pullingText: pullingText, releaseText: releaseText, height: height, action: action)
+        spr_footer = TextView(isHeader: false, refreshText: refreshText, height: height, action: action)
     }
 
     /// Indicator auto refresh footer (auto triggered when scroll down to the bottom of the content)
@@ -186,13 +174,48 @@ public extension UIScrollView {
     /// Indicator + Text auto refresh footer (auto triggered when scroll down to the bottom of the content)
     ///
     /// - Parameters:
-    ///   - loadingText: text display for refreshing, default is 'Loading...'
+    ///   - loadingText: text display for refreshing
     ///   - height: refresh view height, default is 60
     ///   - action: refresh action
-    public func spr_setTextAutoFooter(loadingText: String = "Loading...",
+    public func spr_setTextAutoFooter(loadingText: String = loadingText,
                                       height: CGFloat = 60,
                                       action: @escaping () -> Void) {
         spr_footer = TextAutoFooter(loadingText: loadingText, height: height, action: action)
     }
 
 }
+
+/// Text display for different states
+public struct RefreshText {
+    let loadingText: String
+    let pullingText: String
+    let releaseText: String
+
+    /// Initialization method
+    ///
+    /// - Parameters:
+    ///   - loadingText: text display for refreshing
+    ///   - pullingText: text display for dragging when don't reach the trigger
+    ///   - releaseText: text display for dragging when reach the trigger
+    public init(loadingText: String, pullingText: String, releaseText: String) {
+        self.loadingText = loadingText
+        self.pullingText = pullingText
+        self.releaseText = releaseText
+    }
+}
+
+private let isChinese = Locale.preferredLanguages[0].contains("zh-Han")
+
+public let loadingText = isChinese ? "正在加载..." : "Loading..."
+
+public let headerText = RefreshText(
+    loadingText: loadingText,
+    pullingText: isChinese ? "下拉刷新" : "Pull down to refresh",
+    releaseText: isChinese ? "释放刷新" : "Release to refresh"
+)
+
+public let footerText = RefreshText(
+    loadingText: loadingText,
+    pullingText: isChinese ? "上拉加载" : "Pull up to load more",
+    releaseText: isChinese ? "释放加载" : "Release to load more"
+)

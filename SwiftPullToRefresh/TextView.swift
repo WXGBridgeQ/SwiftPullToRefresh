@@ -10,9 +10,7 @@ import UIKit
 
 class TextView: IndicatorView {
 
-    private let loadingText: String
-    private let pullingText: String
-    private let releaseText: String
+    private let refreshText: RefreshText
 
     private lazy var label: UILabel = {
         let label = UILabel()
@@ -23,12 +21,9 @@ class TextView: IndicatorView {
 
     private let isHeader: Bool
 
-    init(isHeader: Bool, loadingText: String, pullingText: String, releaseText: String,
-         height: CGFloat, action: @escaping () -> Void) {
+    init(isHeader: Bool, refreshText: RefreshText, height: CGFloat, action: @escaping () -> Void) {
         self.isHeader = isHeader
-        self.loadingText = loadingText
-        self.pullingText = pullingText
-        self.releaseText = releaseText
+        self.refreshText = refreshText
         super.init(isHeader: isHeader, height: height, action: action)
         addSubview(label)
     }
@@ -47,13 +42,13 @@ class TextView: IndicatorView {
 
     override func didUpdateState(_ isRefreshing: Bool) {
         super.didUpdateState(isRefreshing)
-        label.text = isRefreshing ? loadingText : pullingText
+        label.text = isRefreshing ? refreshText.loadingText : refreshText.pullingText
         label.sizeToFit()
     }
 
     override func didUpdateProgress(_ progress: CGFloat) {
         super.didUpdateProgress(progress)
-        label.text = progress == 1 ? releaseText : pullingText
+        label.text = progress == 1 ? refreshText.releaseText : refreshText.pullingText
         label.sizeToFit()
     }
 
