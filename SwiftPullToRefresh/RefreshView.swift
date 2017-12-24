@@ -59,7 +59,8 @@ open class RefreshView: UIView {
         offsetToken = scrollView.observe(\.contentOffset) { _, _ in
             self.scrollViewDidScroll(scrollView)
         }
-        stateToken = scrollView.panGestureRecognizer.observe(\.state) { _, _ in
+        stateToken = scrollView.panGestureRecognizer.observe(\.state) { pan, _ in
+            guard pan.state == .ended else { return }
             self.scrollViewDidEndDragging(scrollView)
         }
 
