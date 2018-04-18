@@ -49,9 +49,9 @@ open class RefreshView: UIView {
         return superview as? UIScrollView
     }
 
-    private var offsetToken: NSKeyValueObservation?
-    private var stateToken: NSKeyValueObservation?
-    private var sizeToken: NSKeyValueObservation?
+    private weak var offsetToken: NSKeyValueObservation?
+    private weak var stateToken: NSKeyValueObservation?
+    private weak var sizeToken: NSKeyValueObservation?
 
     override open func didMoveToSuperview() {
         guard let scrollView = scrollView else { return }
