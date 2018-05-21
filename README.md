@@ -111,6 +111,13 @@ scrollView.spr_setTextAutoFooter { [weak self] in
 
 ![](SwiftPullToRefreshDemo/demo08.gif)
 
+#### Clear header or footer
+
+```swift
+scrollView.spr_clearHeader()
+scrollView.spr_clearFooter()
+```
+
 ## Demo
 
 Open and run the SwiftPullToRefreshDemo target in Xcode to see SwiftPullToRefresh in more actions.
