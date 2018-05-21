@@ -183,6 +183,17 @@ public extension UIScrollView {
         spr_footer = TextAutoFooter(loadingText: loadingText, height: height, action: action)
     }
 
+
+    /// Clear the header
+    public func clearHeader() {
+        spr_header = nil
+    }
+
+    /// Clear the footer
+    public func clearFooter() {
+        spr_footer = nil
+    }
+
 }
 
 /// Text display for different states
