@@ -185,12 +185,12 @@ public extension UIScrollView {
 
 
     /// Clear the header
-    public func clearHeader() {
+    public func spr_clearHeader() {
         spr_header = nil
     }
 
     /// Clear the footer
-    public func clearFooter() {
+    public func spr_clearFooter() {
         spr_footer = nil
     }
 
