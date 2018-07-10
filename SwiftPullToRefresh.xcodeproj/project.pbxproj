@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B32565C420F4A90B009E5C68 /* SwiftPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; };
+		B32565C520F4A90B009E5C68 /* SwiftPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B32565CA20F4AD09009E5C68 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32565C920F4AD09009E5C68 /* UIView+Extensions.swift */; };
 		B34182DC1FE943AD001AD3A3 /* SwiftPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B34182E91FE94431001AD3A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182E81FE94431001AD3A3 /* AppDelegate.swift */; };
 		B34182EB1FE94431001AD3A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182EA1FE94431001AD3A3 /* ViewController.swift */; };
 		B34182EE1FE94431001AD3A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34182EC1FE94431001AD3A3 /* Main.storyboard */; };
 		B34182F01FE94431001AD3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34182EF1FE94431001AD3A3 /* Assets.xcassets */; };
 		B34182F31FE94431001AD3A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34182F11FE94431001AD3A3 /* LaunchScreen.storyboard */; };
-		B34182F91FE944A2001AD3A3 /* ScrollViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182F81FE944A2001AD3A3 /* ScrollViewExtension.swift */; };
+		B34182F91FE944A2001AD3A3 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */; };
 		B34182FB1FE94572001AD3A3 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182FA1FE94572001AD3A3 /* RefreshView.swift */; };
 		B34182FF1FE94A98001AD3A3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182FE1FE94A98001AD3A3 /* TestViewController.swift */; };
 		B3BD3ABB1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD3ABA1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift */; };
@@ -23,12 +26,36 @@
 		B3C4C4571FEB8E2A009A8A5E /* GIFHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4C4561FEB8E2A009A8A5E /* GIFHeader.swift */; };
 		B3C4C45A1FEB93A9009A8A5E /* demo-small.gif in Resources */ = {isa = PBXBuildFile; fileRef = B3C4C4581FEB93A9009A8A5E /* demo-small.gif */; };
 		B3C4C45B1FEB93A9009A8A5E /* demo-big.gif in Resources */ = {isa = PBXBuildFile; fileRef = B3C4C4591FEB93A9009A8A5E /* demo-big.gif */; };
-		B3C4C45D1FEB9462009A8A5E /* SwiftPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; };
 		B3D6CBB91FEB9591005D231C /* GIFTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6CBB81FEB9591005D231C /* GIFTextHeader.swift */; };
 		B3D6CBBB1FEB977F005D231C /* SuperCatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6CBBA1FEB977F005D231C /* SuperCatHeader.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B32565C620F4A90B009E5C68 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B34182CE1FE943AD001AD3A3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B34182D61FE943AD001AD3A3;
+			remoteInfo = SwiftPullToRefresh;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B32565C820F4A90B009E5C68 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B32565C520F4A90B009E5C68 /* SwiftPullToRefresh.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B32565C920F4AD09009E5C68 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftPullToRefresh.h; sourceTree = "<group>"; };
 		B34182DB1FE943AD001AD3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,7 +66,7 @@
 		B34182EF1FE94431001AD3A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B34182F21FE94431001AD3A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B34182F41FE94431001AD3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B34182F81FE944A2001AD3A3 /* ScrollViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewExtension.swift; sourceTree = "<group>"; };
+		B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		B34182FA1FE94572001AD3A3 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		B34182FE1FE94A98001AD3A3 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		B3BD3ABA1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorAutoFooter.swift; sourceTree = "<group>"; };
@@ -65,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3C4C45D1FEB9462009A8A5E /* SwiftPullToRefresh.framework in Frameworks */,
+				B32565C420F4A90B009E5C68 /* SwiftPullToRefresh.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +123,8 @@
 			children = (
 				B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */,
 				B34182DB1FE943AD001AD3A3 /* Info.plist */,
-				B34182F81FE944A2001AD3A3 /* ScrollViewExtension.swift */,
+				B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */,
+				B32565C920F4AD09009E5C68 /* UIView+Extensions.swift */,
 				B34182FA1FE94572001AD3A3 /* RefreshView.swift */,
 				B3C3A6241FEA9C5000C1E49E /* IndicatorView.swift */,
 				B3C3A6261FEAAEC500C1E49E /* TextView.swift */,
@@ -171,10 +199,12 @@
 				B34182E21FE94431001AD3A3 /* Sources */,
 				B34182E31FE94431001AD3A3 /* Frameworks */,
 				B34182E41FE94431001AD3A3 /* Resources */,
+				B32565C820F4A90B009E5C68 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B32565C720F4A90B009E5C68 /* PBXTargetDependency */,
 			);
 			name = SwiftPullToRefreshDemo;
 			productName = SwiftPullToRefreshDemo;
@@ -251,9 +281,10 @@
 				B34182FB1FE94572001AD3A3 /* RefreshView.swift in Sources */,
 				B3D6CBB91FEB9591005D231C /* GIFTextHeader.swift in Sources */,
 				B3C3A6271FEAAEC500C1E49E /* TextView.swift in Sources */,
+				B32565CA20F4AD09009E5C68 /* UIView+Extensions.swift in Sources */,
 				B3BD3ABD1FEBA6AD0027AAF5 /* TextAutoFooter.swift in Sources */,
 				B3C3A6251FEA9C5000C1E49E /* IndicatorView.swift in Sources */,
-				B34182F91FE944A2001AD3A3 /* ScrollViewExtension.swift in Sources */,
+				B34182F91FE944A2001AD3A3 /* UIScrollView+Extensions.swift in Sources */,
 				B3C4C4571FEB8E2A009A8A5E /* GIFHeader.swift in Sources */,
 				B3BD3ABB1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift in Sources */,
 			);
@@ -271,6 +302,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B32565C720F4A90B009E5C68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B34182D61FE943AD001AD3A3 /* SwiftPullToRefresh */;
+			targetProxy = B32565C620F4A90B009E5C68 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B34182EC1FE94431001AD3A3 /* Main.storyboard */ = {
@@ -413,10 +452,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 52UA52QQR3;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -440,7 +479,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 52UA52QQR3;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -459,9 +498,10 @@
 		B34182F61FE94431001AD3A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52UA52QQR3;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftPullToRefreshDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -475,9 +515,10 @@
 		B34182F71FE94431001AD3A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 52UA52QQR3;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftPullToRefreshDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

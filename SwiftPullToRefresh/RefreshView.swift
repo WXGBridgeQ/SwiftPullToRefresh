@@ -49,22 +49,18 @@ open class RefreshView: UIView {
         return superview as? UIScrollView
     }
 
-    private var offsetToken: NSKeyValueObservation?
-    private var stateToken: NSKeyValueObservation?
-    private var sizeToken: NSKeyValueObservation?
-
     override open func didMoveToSuperview() {
-        offsetToken = scrollView?.observe(\.contentOffset) { scrollView, _ in
+        scrollView?.superview?.offsetToken = scrollView?.observe(\.contentOffset) { scrollView, _ in
             self.scrollViewDidScroll(scrollView)
         }
-        stateToken = scrollView?.observe(\.panGestureRecognizer.state) { scrollView, _ in
+        scrollView?.superview?.stateToken = scrollView?.observe(\.panGestureRecognizer.state) { scrollView, _ in
             guard scrollView.panGestureRecognizer.state == .ended else { return }
             self.scrollViewDidEndDragging(scrollView)
         }
         if style == .header {
             frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
         } else {
-            sizeToken = scrollView?.observe(\.contentSize) { scrollView, _ in
+            scrollView?.superview?.sizeToken = scrollView?.observe(\.contentSize) { scrollView, _ in
                 self.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self.height)
                 self.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
