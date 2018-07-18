@@ -49,20 +49,33 @@ open class RefreshView: UIView {
         return superview as? UIScrollView
     }
 
-    override open func didMoveToSuperview() {
-        scrollView?.superview?.offsetToken = scrollView?.observe(\.contentOffset) { scrollView, _ in
-            self.scrollViewDidScroll(scrollView)
+    private var offsetToken: NSKeyValueObservation?
+    private var stateToken: NSKeyValueObservation?
+    private var sizeToken: NSKeyValueObservation?
+
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        if newWindow == nil {
+            offsetToken?.invalidate()
+            stateToken?.invalidate()
+            sizeToken?.invalidate()
         }
-        scrollView?.superview?.stateToken = scrollView?.observe(\.panGestureRecognizer.state) { scrollView, _ in
+    }
+
+    override open func didMoveToSuperview() {
+        guard let scrollView = scrollView else { return }
+        offsetToken = scrollView.observe(\.contentOffset) { [weak self] scrollView, _ in
+            self?.scrollViewDidScroll(scrollView)
+        }
+        stateToken = scrollView.observe(\.panGestureRecognizer.state) { [weak self] scrollView, _ in
             guard scrollView.panGestureRecognizer.state == .ended else { return }
-            self.scrollViewDidEndDragging(scrollView)
+            self?.scrollViewDidEndDragging(scrollView)
         }
         if style == .header {
             frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
         } else {
-            scrollView?.superview?.sizeToken = scrollView?.observe(\.contentSize) { scrollView, _ in
-                self.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self.height)
-                self.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
+            sizeToken = scrollView.observe(\.contentSize) { [weak self] scrollView, _ in
+                self?.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self?.height ?? 0)
+                self?.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
         }
     }

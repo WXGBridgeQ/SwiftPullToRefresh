@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B32565C420F4A90B009E5C68 /* SwiftPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; };
 		B32565C520F4A90B009E5C68 /* SwiftPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B32565CA20F4AD09009E5C68 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32565C920F4AD09009E5C68 /* UIView+Extensions.swift */; };
 		B34182DC1FE943AD001AD3A3 /* SwiftPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B34182E91FE94431001AD3A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182E81FE94431001AD3A3 /* AppDelegate.swift */; };
 		B34182EB1FE94431001AD3A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182EA1FE94431001AD3A3 /* ViewController.swift */; };
@@ -55,7 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B32565C920F4AD09009E5C68 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftPullToRefresh.h; sourceTree = "<group>"; };
 		B34182DB1FE943AD001AD3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */,
 				B34182DB1FE943AD001AD3A3 /* Info.plist */,
 				B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */,
-				B32565C920F4AD09009E5C68 /* UIView+Extensions.swift */,
 				B34182FA1FE94572001AD3A3 /* RefreshView.swift */,
 				B3C3A6241FEA9C5000C1E49E /* IndicatorView.swift */,
 				B3C3A6261FEAAEC500C1E49E /* TextView.swift */,
@@ -218,7 +215,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Wiredcraft;
 				TargetAttributes = {
 					B34182D61FE943AD001AD3A3 = {
@@ -281,7 +278,6 @@
 				B34182FB1FE94572001AD3A3 /* RefreshView.swift in Sources */,
 				B3D6CBB91FEB9591005D231C /* GIFTextHeader.swift in Sources */,
 				B3C3A6271FEAAEC500C1E49E /* TextView.swift in Sources */,
-				B32565CA20F4AD09009E5C68 /* UIView+Extensions.swift in Sources */,
 				B3BD3ABD1FEBA6AD0027AAF5 /* TextAutoFooter.swift in Sources */,
 				B3C3A6251FEA9C5000C1E49E /* IndicatorView.swift in Sources */,
 				B34182F91FE944A2001AD3A3 /* UIScrollView+Extensions.swift in Sources */,
@@ -452,7 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
