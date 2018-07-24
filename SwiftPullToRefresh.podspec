@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SwiftPullToRefresh"
-  s.version      = "2.4.3"
+  s.version      = "2.4.4"
   s.summary      = "An easy way to implement pull-to-refresh feature based on UIScrollView extension, written in Swift 4."
   s.description  = <<-DESC
                     An easy way to implement pull-to-refresh feature based on UIScrollView extension, written in Swift 4. Provide default style header and footer controls which you can directly use in your project, and also support for customization. GIF is also supported.
