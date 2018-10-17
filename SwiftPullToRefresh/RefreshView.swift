@@ -54,16 +54,20 @@ open class RefreshView: UIView {
     private var sizeToken: NSKeyValueObservation?
 
     open override func willMove(toWindow newWindow: UIWindow?) {
-        newWindow == nil ? clearObserver() : setupObserver()
+        if newWindow == nil {
+            clearObserver()
+        } else {
+            guard let scrollView = scrollView else { return }
+            setupObserver(scrollView)
+        }
     }
 
     open override func willMove(toSuperview newSuperview: UIView?) {
-        setupObserver()
+        guard let scrollView = newSuperview as? UIScrollView else { return }
+        setupObserver(scrollView)
     }
 
-    private func setupObserver() {
-        guard let scrollView = scrollView else { return }
-
+    private func setupObserver(_ scrollView: UIScrollView) {
         offsetToken = scrollView.observe(\.contentOffset) { [weak self] scrollView, _ in
             self?.scrollViewDidScroll(scrollView)
         }
