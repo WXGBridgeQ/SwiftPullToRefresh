@@ -23,11 +23,11 @@ class IndicatorView: RefreshView {
         layer.path = path.cgPath
         layer.strokeColor = UIColor.black.withAlphaComponent(0.8).cgColor
         layer.lineWidth = 2
-        layer.lineCap = kCALineCapRound
+        layer.lineCap = .round
         return layer
     }()
 
-    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let indicator = UIActivityIndicatorView(style: .gray)
 
     private let isHeader: Bool
 

@@ -35,10 +35,10 @@ final class SuperCatHeader: RefreshView {
             let buildings = refreshItems[0].view
             let ground = refreshItems[2].view
 
-            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animate(withDuration: 0.2) {
                 ground.center.y += self.height
                 buildings.center.y += self.height
-            }, completion: nil)
+            }
         } else {
             let cape = refreshItems[5].view
             let cat = refreshItems[4].view
