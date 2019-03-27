@@ -12,7 +12,7 @@ private var headerKey: UInt8 = 0
 private var footerKey: UInt8 = 0
 private var tempFooterKey: UInt8 = 0
 
-public extension UIScrollView {
+extension UIScrollView {
 
     private var spr_header: RefreshView? {
         get {
