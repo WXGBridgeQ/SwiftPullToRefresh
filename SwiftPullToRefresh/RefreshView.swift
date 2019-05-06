@@ -63,7 +63,10 @@ open class RefreshView: UIView {
     }
 
     open override func willMove(toSuperview newSuperview: UIView?) {
-        guard let scrollView = newSuperview as? UIScrollView else { return }
+        guard let scrollView = newSuperview as? UIScrollView, window != nil else {
+            clearObserver()
+            return
+        }
         setupObserver(scrollView)
     }
 
