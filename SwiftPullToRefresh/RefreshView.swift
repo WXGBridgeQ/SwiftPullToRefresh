@@ -23,6 +23,8 @@ open class RefreshView: UIView {
         self.height = height
         self.action = action
         super.init(frame: .zero)
+
+        self.autoresizingMask = [ .flexibleWidth ]
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -79,10 +81,10 @@ open class RefreshView: UIView {
             self?.scrollViewDidEndDragging(scrollView)
         }
         if style == .header {
-            frame = CGRect(x: 0, y: -height, width: UIScreen.main.bounds.width, height: height)
+            frame = CGRect(x: 0, y: -height, width: scrollView.bounds.width, height: height)
         } else {
             sizeToken = scrollView.observe(\.contentSize) { [weak self] scrollView, _ in
-                self?.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: UIScreen.main.bounds.width, height: self?.height ?? 0)
+                self?.frame = CGRect(x: 0, y: scrollView.contentSize.height, width: scrollView.bounds.width, height: self?.height ?? 0)
                 self?.isHidden = scrollView.contentSize.height <= scrollView.bounds.height
             }
         }
