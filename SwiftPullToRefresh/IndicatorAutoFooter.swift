@@ -10,7 +10,7 @@ import UIKit
 
 class IndicatorAutoFooter: RefreshView {
 
-    let indicator = UIActivityIndicatorView(style: .gray)
+    let indicator = UIActivityIndicatorView(style: .medium)
 
     init(height: CGFloat, action: @escaping () -> Void) {
         super.init(style: .autoFooter, height: height, action: action)
