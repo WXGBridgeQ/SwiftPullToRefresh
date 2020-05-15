@@ -47,9 +47,9 @@ open class RefreshView: UIView {
         fatalError("didUpdateProgress(_:) has not been implemented")
     }
 
-    private var scrollView: UIScrollView? {
+    private lazy var scrollView: UIScrollView? = {
         return superview as? UIScrollView
-    }
+    }()
 
     private var offsetToken: NSKeyValueObservation?
     private var stateToken: NSKeyValueObservation?
@@ -65,7 +65,7 @@ open class RefreshView: UIView {
     }
 
     open override func willMove(toSuperview newSuperview: UIView?) {
-        guard let scrollView = newSuperview as? UIScrollView, window != nil else {
+        guard let scrollView = newSuperview as? UIScrollView else {
             clearObserver()
             return
         }
