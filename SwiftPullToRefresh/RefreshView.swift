@@ -47,9 +47,9 @@ open class RefreshView: UIView {
         fatalError("didUpdateProgress(_:) has not been implemented")
     }
 
-    private lazy var scrollView: UIScrollView? = {
+    private var scrollView: UIScrollView? {
         return superview as? UIScrollView
-    }()
+    }
 
     private var offsetToken: NSKeyValueObservation?
     private var stateToken: NSKeyValueObservation?
