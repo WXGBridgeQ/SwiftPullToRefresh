@@ -215,7 +215,9 @@ public struct RefreshText {
     }
 }
 
-private let isChinese = Locale.preferredLanguages[0].contains("zh-Han")
+private var isChinese: Bool {
+    Locale.preferredLanguages[0].contains("zh-Han")
+}
 
 public let loadingText = isChinese ? "正在加载..." : "Loading..."
 
