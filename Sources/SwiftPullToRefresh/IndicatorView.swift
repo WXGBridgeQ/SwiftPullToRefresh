@@ -27,7 +27,7 @@ class IndicatorView: RefreshView {
         return layer
     }()
 
-    let indicator = UIActivityIndicatorView(style: .gray)
+    let indicator = UIActivityIndicatorView(style: .systemMedium)
 
     private let isHeader: Bool
 
