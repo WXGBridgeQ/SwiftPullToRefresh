@@ -1,30 +1,27 @@
 //
-//  TextView.swift
+//  GIFTextHeader.swift
 //  SwiftPullToRefresh
 //
-//  Created by Leo Zhou on 2017/12/20.
+//  Created by Leo Zhou on 2017/12/21.
 //  Copyright © 2017年 Wiredcraft. All rights reserved.
 //
 
 import UIKit
 
-class TextView: IndicatorView {
+class GIFTextHeader: GIFHeader {
 
     private let refreshText: RefreshText
 
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.black.withAlphaComponent(0.8)
+        label.textColor = UIColor.systemLabel.withAlphaComponent(0.8)
         return label
     }()
 
-    private let isHeader: Bool
-
-    init(isHeader: Bool, refreshText: RefreshText, height: CGFloat, action: @escaping () -> Void) {
-        self.isHeader = isHeader
+    init(data: Data, refreshText: RefreshText, height: CGFloat, action: @escaping () -> Void) {
         self.refreshText = refreshText
-        super.init(isHeader: isHeader, height: height, action: action)
+        super.init(data: data, isBig: false, height: height, action: action)
         addSubview(label)
     }
 
@@ -35,9 +32,8 @@ class TextView: IndicatorView {
     override func layoutSubviews() {
         super.layoutSubviews()
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        arrowLayer.position = center.move(x: -label.bounds.midX - 4)
-        indicator.center = center.move(x: -label.bounds.midX - 4)
-        label.center = center.move(x: indicator.bounds.midX + 4)
+        imageView.center = center.move(x: -label.bounds.midX - 4)
+        label.center = center.move(x: imageView.bounds.midX + 4)
     }
 
     override func didUpdateState(_ isRefreshing: Bool) {
@@ -52,10 +48,4 @@ class TextView: IndicatorView {
         label.sizeToFit()
     }
 
-}
-
-extension CGPoint {
-    func move(x: CGFloat) -> CGPoint {
-        return CGPoint(x: self.x + x, y: y)
-    }
 }

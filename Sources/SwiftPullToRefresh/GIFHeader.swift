@@ -66,7 +66,7 @@ class GIFHeader: RefreshView {
 
 }
 
-protocol AnimatedImage: class {
+protocol AnimatedImage: AnyObject {
     var size: CGSize { get }
     var frameCount: Int { get }
 

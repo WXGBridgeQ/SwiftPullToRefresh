@@ -21,7 +21,7 @@ class IndicatorView: RefreshView {
 
         let layer = CAShapeLayer()
         layer.path = path.cgPath
-        layer.strokeColor = UIColor.black.withAlphaComponent(0.8).cgColor
+        layer.strokeColor = UIColor.systemLabel.withAlphaComponent(0.8).cgColor
         layer.lineWidth = 2
         layer.lineCap = .round
         return layer
