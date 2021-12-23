@@ -15,7 +15,7 @@ class TextAutoFooter: IndicatorAutoFooter {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.black.withAlphaComponent(0.8)
+        label.textColor = UIColor.systemLabel.withAlphaComponent(0.8)
         return label
     }()
 
