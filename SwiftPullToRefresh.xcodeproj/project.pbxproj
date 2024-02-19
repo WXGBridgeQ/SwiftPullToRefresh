@@ -9,24 +9,24 @@
 /* Begin PBXBuildFile section */
 		B32565C420F4A90B009E5C68 /* SwiftPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; };
 		B32565C520F4A90B009E5C68 /* SwiftPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B34182DC1FE943AD001AD3A3 /* SwiftPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B34182E91FE94431001AD3A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182E81FE94431001AD3A3 /* AppDelegate.swift */; };
 		B34182EB1FE94431001AD3A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182EA1FE94431001AD3A3 /* ViewController.swift */; };
 		B34182EE1FE94431001AD3A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34182EC1FE94431001AD3A3 /* Main.storyboard */; };
 		B34182F01FE94431001AD3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B34182EF1FE94431001AD3A3 /* Assets.xcassets */; };
 		B34182F31FE94431001AD3A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B34182F11FE94431001AD3A3 /* LaunchScreen.storyboard */; };
-		B34182F91FE944A2001AD3A3 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */; };
-		B34182FB1FE94572001AD3A3 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182FA1FE94572001AD3A3 /* RefreshView.swift */; };
 		B34182FF1FE94A98001AD3A3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34182FE1FE94A98001AD3A3 /* TestViewController.swift */; };
-		B3BD3ABB1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD3ABA1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift */; };
-		B3BD3ABD1FEBA6AD0027AAF5 /* TextAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BD3ABC1FEBA6AD0027AAF5 /* TextAutoFooter.swift */; };
-		B3C3A6251FEA9C5000C1E49E /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3A6241FEA9C5000C1E49E /* IndicatorView.swift */; };
-		B3C3A6271FEAAEC500C1E49E /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C3A6261FEAAEC500C1E49E /* TextView.swift */; };
-		B3C4C4571FEB8E2A009A8A5E /* GIFHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4C4561FEB8E2A009A8A5E /* GIFHeader.swift */; };
 		B3C4C45A1FEB93A9009A8A5E /* demo-small.gif in Resources */ = {isa = PBXBuildFile; fileRef = B3C4C4581FEB93A9009A8A5E /* demo-small.gif */; };
 		B3C4C45B1FEB93A9009A8A5E /* demo-big.gif in Resources */ = {isa = PBXBuildFile; fileRef = B3C4C4591FEB93A9009A8A5E /* demo-big.gif */; };
-		B3D6CBB91FEB9591005D231C /* GIFTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6CBB81FEB9591005D231C /* GIFTextHeader.swift */; };
 		B3D6CBBB1FEB977F005D231C /* SuperCatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D6CBBA1FEB977F005D231C /* SuperCatHeader.swift */; };
+		F63B10E62B83940900AB677A /* SwiftPullToRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = F63B10DD2B83940900AB677A /* SwiftPullToRefresh.h */; };
+		F63B10E72B83940900AB677A /* TextAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10DE2B83940900AB677A /* TextAutoFooter.swift */; };
+		F63B10E82B83940900AB677A /* IndicatorAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10DF2B83940900AB677A /* IndicatorAutoFooter.swift */; };
+		F63B10E92B83940900AB677A /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10E02B83940900AB677A /* RefreshView.swift */; };
+		F63B10EA2B83940900AB677A /* GIFTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10E12B83940900AB677A /* GIFTextHeader.swift */; };
+		F63B10EB2B83940900AB677A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10E22B83940900AB677A /* TextView.swift */; };
+		F63B10EC2B83940900AB677A /* GIFHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10E32B83940900AB677A /* GIFHeader.swift */; };
+		F63B10ED2B83940900AB677A /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10E42B83940900AB677A /* IndicatorView.swift */; };
+		F63B10EE2B83940900AB677A /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63B10E52B83940900AB677A /* UIScrollView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		B34182D71FE943AD001AD3A3 /* SwiftPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftPullToRefresh.h; sourceTree = "<group>"; };
 		B34182DB1FE943AD001AD3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B34182E61FE94431001AD3A3 /* SwiftPullToRefreshDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPullToRefreshDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34182E81FE94431001AD3A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,18 +63,19 @@
 		B34182EF1FE94431001AD3A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B34182F21FE94431001AD3A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B34182F41FE94431001AD3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
-		B34182FA1FE94572001AD3A3 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		B34182FE1FE94A98001AD3A3 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		B3BD3ABA1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorAutoFooter.swift; sourceTree = "<group>"; };
-		B3BD3ABC1FEBA6AD0027AAF5 /* TextAutoFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAutoFooter.swift; sourceTree = "<group>"; };
-		B3C3A6241FEA9C5000C1E49E /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
-		B3C3A6261FEAAEC500C1E49E /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		B3C4C4561FEB8E2A009A8A5E /* GIFHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFHeader.swift; sourceTree = "<group>"; };
 		B3C4C4581FEB93A9009A8A5E /* demo-small.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "demo-small.gif"; sourceTree = "<group>"; };
 		B3C4C4591FEB93A9009A8A5E /* demo-big.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "demo-big.gif"; sourceTree = "<group>"; };
-		B3D6CBB81FEB9591005D231C /* GIFTextHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFTextHeader.swift; sourceTree = "<group>"; };
 		B3D6CBBA1FEB977F005D231C /* SuperCatHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperCatHeader.swift; sourceTree = "<group>"; };
+		F63B10DD2B83940900AB677A /* SwiftPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwiftPullToRefresh.h; path = Sources/SwiftPullToRefresh/SwiftPullToRefresh.h; sourceTree = SOURCE_ROOT; };
+		F63B10DE2B83940900AB677A /* TextAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextAutoFooter.swift; path = Sources/SwiftPullToRefresh/TextAutoFooter.swift; sourceTree = SOURCE_ROOT; };
+		F63B10DF2B83940900AB677A /* IndicatorAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndicatorAutoFooter.swift; path = Sources/SwiftPullToRefresh/IndicatorAutoFooter.swift; sourceTree = SOURCE_ROOT; };
+		F63B10E02B83940900AB677A /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RefreshView.swift; path = Sources/SwiftPullToRefresh/RefreshView.swift; sourceTree = SOURCE_ROOT; };
+		F63B10E12B83940900AB677A /* GIFTextHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFTextHeader.swift; path = Sources/SwiftPullToRefresh/GIFTextHeader.swift; sourceTree = SOURCE_ROOT; };
+		F63B10E22B83940900AB677A /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextView.swift; path = Sources/SwiftPullToRefresh/TextView.swift; sourceTree = SOURCE_ROOT; };
+		F63B10E32B83940900AB677A /* GIFHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GIFHeader.swift; path = Sources/SwiftPullToRefresh/GIFHeader.swift; sourceTree = SOURCE_ROOT; };
+		F63B10E42B83940900AB677A /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndicatorView.swift; path = Sources/SwiftPullToRefresh/IndicatorView.swift; sourceTree = SOURCE_ROOT; };
+		F63B10E52B83940900AB677A /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScrollView+Extensions.swift"; path = "Sources/SwiftPullToRefresh/UIScrollView+Extensions.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,16 +119,16 @@
 		B34182D91FE943AD001AD3A3 /* SwiftPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				B34182DA1FE943AD001AD3A3 /* SwiftPullToRefresh.h */,
+				F63B10E32B83940900AB677A /* GIFHeader.swift */,
+				F63B10E12B83940900AB677A /* GIFTextHeader.swift */,
+				F63B10DF2B83940900AB677A /* IndicatorAutoFooter.swift */,
+				F63B10E42B83940900AB677A /* IndicatorView.swift */,
+				F63B10E02B83940900AB677A /* RefreshView.swift */,
+				F63B10DD2B83940900AB677A /* SwiftPullToRefresh.h */,
+				F63B10DE2B83940900AB677A /* TextAutoFooter.swift */,
+				F63B10E22B83940900AB677A /* TextView.swift */,
+				F63B10E52B83940900AB677A /* UIScrollView+Extensions.swift */,
 				B34182DB1FE943AD001AD3A3 /* Info.plist */,
-				B34182F81FE944A2001AD3A3 /* UIScrollView+Extensions.swift */,
-				B34182FA1FE94572001AD3A3 /* RefreshView.swift */,
-				B3C3A6241FEA9C5000C1E49E /* IndicatorView.swift */,
-				B3C3A6261FEAAEC500C1E49E /* TextView.swift */,
-				B3C4C4561FEB8E2A009A8A5E /* GIFHeader.swift */,
-				B3D6CBB81FEB9591005D231C /* GIFTextHeader.swift */,
-				B3BD3ABA1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift */,
-				B3BD3ABC1FEBA6AD0027AAF5 /* TextAutoFooter.swift */,
 			);
 			path = SwiftPullToRefresh;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B34182DC1FE943AD001AD3A3 /* SwiftPullToRefresh.h in Headers */,
+				F63B10E62B83940900AB677A /* SwiftPullToRefresh.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,14 +276,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B34182FB1FE94572001AD3A3 /* RefreshView.swift in Sources */,
-				B3D6CBB91FEB9591005D231C /* GIFTextHeader.swift in Sources */,
-				B3C3A6271FEAAEC500C1E49E /* TextView.swift in Sources */,
-				B3BD3ABD1FEBA6AD0027AAF5 /* TextAutoFooter.swift in Sources */,
-				B3C3A6251FEA9C5000C1E49E /* IndicatorView.swift in Sources */,
-				B34182F91FE944A2001AD3A3 /* UIScrollView+Extensions.swift in Sources */,
-				B3C4C4571FEB8E2A009A8A5E /* GIFHeader.swift in Sources */,
-				B3BD3ABB1FEBA53B0027AAF5 /* IndicatorAutoFooter.swift in Sources */,
+				F63B10E92B83940900AB677A /* RefreshView.swift in Sources */,
+				F63B10EC2B83940900AB677A /* GIFHeader.swift in Sources */,
+				F63B10ED2B83940900AB677A /* IndicatorView.swift in Sources */,
+				F63B10EB2B83940900AB677A /* TextView.swift in Sources */,
+				F63B10EA2B83940900AB677A /* GIFTextHeader.swift in Sources */,
+				F63B10E82B83940900AB677A /* IndicatorAutoFooter.swift in Sources */,
+				F63B10EE2B83940900AB677A /* UIScrollView+Extensions.swift in Sources */,
+				F63B10E72B83940900AB677A /* TextAutoFooter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +458,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftPullToRefresh/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiredcraft.SwiftPullToRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -482,7 +482,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SwiftPullToRefresh/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiredcraft.SwiftPullToRefresh;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -500,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftPullToRefreshDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiredcraft.SwiftPullToRefreshDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -517,7 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftPullToRefreshDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wiredcraft.SwiftPullToRefreshDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
